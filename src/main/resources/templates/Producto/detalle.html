@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detalles del Producto</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body class="bg-dark text-white">
+    <header th:replace="~{layout/plantilla :: header}" class="w-100 bg-primary text-white py-4 text-center">
+        <h2>Detalles del Producto</h2>
+    </header>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="card bg-dark text-white shadow-lg">
+                <div class="card-body">
+                    <h3 class="card-title" th:text="${producto.descripcion}">Nombre del Producto</h3>
+                    <p><strong>Detalle:</strong> <span th:text="${producto.detalle}"></span></p>
+                    <p><strong>Precio:</strong> <span th:text="${producto.precio}"></span></p>
+                    <p><strong>Existencia:</strong> <span th:text="${producto.existencia}"></span></p>
+                    <p><strong>Categoría ID:</strong> <span th:text="${producto.idCategoria}"></span></p>
+                    <p><strong>Material ID:</strong> <span th:text="${producto.idMaterial}"></span></p>
+                    <p><strong>Activo:</strong> <span th:text="${producto.activo} ? 'Sí' : 'No'"></span></p>
+                    <a th:href="@{/productos}" class="btn btn-outline-light mt-4">Volver a la Lista</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer th:replace="~{layout/plantilla :: footer}" class="w-100 bg-primary text-white py-3 text-center"/>
+</body>
+</html>

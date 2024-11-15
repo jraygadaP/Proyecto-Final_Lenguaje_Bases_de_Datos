@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Categorías</title>
+</head>
+<body>
+    <h1>Lista de Categorías</h1>
+    <a th:href="@{/categorias/nueva}">Nueva Categoría</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Descripción</th>
+                <th>Ruta Imagen</th>
+                <th>Activo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="categoria : ${categorias}">
+                <td th:text="${categoria.idCategoria}"></td>
+                <td th:text="${categoria.descripcion}"></td>
+                <td th:text="${categoria.rutaImagen}"></td>
+                <td th:text="${categoria.activo}"></td>
+                <td>
+                    <a th:href="@{'/categorias/editar/' + ${categoria.idCategoria}}">Editar</a>
+                    <a th:href="@{'/categorias/eliminar/' + ${categoria.idCategoria}}">Eliminar</a>
+                    <a th:href="@{'/categorias/' + ${categoria.idCategoria}}" class="btn btn-outline-primary btn-sm">Ver</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

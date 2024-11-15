@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detalle Gestión</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body class="bg-dark text-white">
+    <header th:replace="~{layout/plantilla :: header}" class="w-100 bg-primary text-white py-4 text-center">
+        <h2>Detalle Gestión</h2>
+    </header>
+    <section class="py-5">
+        <div class="container">
+            <div class="card bg-dark text-white shadow-lg">
+                <div class="card-body text-center">
+                    <p>ID Gestión: <span th:text="${gestion.idGestion}"></span></p>
+                    <p>ID Proveedor: <span th:text="${gestion.idProveedor}"></span></p>
+                    <p>ID Material: <span th:text="${gestion.idMaterial}"></span></p>
+                    <a href="/gestiones-proveedores" class="btn btn-outline-light">Volver</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer th:replace="~{layout/plantilla :: footer}" class="w-100 bg-primary text-white py-3 text-center"/>
+</body>
+</html>

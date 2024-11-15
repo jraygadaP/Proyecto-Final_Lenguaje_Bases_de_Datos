@@ -53,4 +53,18 @@ public class ProductController {
         productService.deleteProduct(id);
         return "redirect:/entidades";
     }
+    
+@GetMapping("/{id}")
+public String mostrarEntidad(@PathVariable Long id, Model model) {
+    Product entidad = productService.getProducts().stream()
+                                    .filter(p -> p.getId().equals(id))
+                                    .findFirst()
+                                    .orElse(null);
+    if (entidad == null) {
+        return "error/404";  // Redirige a una página 404 personalizada si no se encuentra
+    }
+    model.addAttribute("entidad", entidad);
+    return "product/detalle";  // Nombre de la plantilla
+}
+
 }

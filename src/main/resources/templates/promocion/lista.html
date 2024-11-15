@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Promociones</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body class="bg-dark text-white">
+    <header th:replace="~{layout/plantilla :: header}" class="w-100 bg-primary text-white py-4 text-center">
+        <h2>Lista de Promociones</h2>
+    </header>
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h3>Promociones Activas</h3>
+                <a href="/promociones/nueva" class="btn btn-success">Nueva Promoción</a>
+            </div>
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Producto</th>
+                        <th>Promoción</th>
+                        <th>Duración</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="promocion : ${promociones}">
+                        <td th:text="${promocion.idPromociones}"></td>
+                        <td th:text="${promocion.idProducto}"></td>
+                        <td th:text="${promocion.promocion}"></td>
+                        <td th:text="${promocion.duracion}"></td>
+                        <td>
+                            <a th:href="@{'/promociones/' + ${promocion.idPromociones}}" class="btn btn-outline-primary btn-sm">Ver</a>
+                            <a th:href="@{'/promociones/editar/' + ${promocion.idPromociones}}" class="btn btn-outline-warning btn-sm">Editar</a>
+                            <a th:href="@{'/promociones/eliminar/' + ${promocion.idPromociones}}" class="btn btn-outline-danger btn-sm">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <footer th:replace="~{layout/plantilla :: footer}" class="w-100 bg-primary text-white py-3 text-center"/>
+</body>
+</html>

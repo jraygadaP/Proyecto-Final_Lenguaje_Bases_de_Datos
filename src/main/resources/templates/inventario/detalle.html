@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detalles del Material</title>
+</head>
+<body>
+    <h1>Detalles del Material</h1>
+    <p>ID: <span th:text="${material.idMaterial}"></span></p>
+    <p>Tipo de Material: <span th:text="${material.tipoMaterial}"></span></p>
+    <p>Cantidad: <span th:text="${material.cantidad}"></span></p>
+    <a th:href="@{/inventario}">Volver al Inventario</a>
+</body>
+</html>

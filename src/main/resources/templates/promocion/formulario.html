@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${promocion.idPromociones != null} ? 'Editar Promoción' : 'Nueva Promoción'"></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body class="bg-dark text-white">
+    <header th:replace="~{layout/plantilla :: header}" class="w-100 bg-primary text-white py-4 text-center">
+        <h2 th:text="${promocion.idPromociones != null} ? 'Editar Promoción' : 'Nueva Promoción'"></h2>
+    </header>
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card bg-dark text-white shadow-lg">
+                        <div class="card-body">
+                            <form th:action="${promocion.idPromociones != null} ? @{/promociones/actualizar/{id}(id=${promocion.idPromociones})} : @{/promociones}" th:object="${promocion}" method="post">
+                                <div class="form-group mb-3">
+                                    <label for="idProducto">Producto ID:</label>
+                                    <input type="number" id="idProducto" th:field="*{idProducto}" class="form-control bg-dark text-white" required='requires'/>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="promocion">Promoción:</label>
+                                    <input type="text" id="promocion" th:field="*{promocion}" class="form-control bg-dark text-white"  required='requires'/>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="duracion">Duración (días):</label>
+                                    <input type="number" id="duracion" th:field="*{duracion}" class="form-control bg-dark text-white"  required='requires'/>
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-success">Guardar</button>
+                                </div>
+                            </form>
+                            <div class="text-center mt-3">
+                                <a th:href="@{/promociones}" class="btn btn-outline-light">Cancelar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer th:replace="~{layout/plantilla :: footer}" class="w-100 bg-primary text-white py-3 text-center"/>
+</body>
+</html>

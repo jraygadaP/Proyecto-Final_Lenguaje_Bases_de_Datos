@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Proveedores</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body class="bg-dark text-white">
+    <header th:replace="~{layout/plantilla :: header}" class="w-100 bg-primary text-white py-4 text-center">
+        <h2>Lista de Proveedores</h2>
+    </header>
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h3>Proveedores</h3>
+                <a href="/proveedores/nuevo" class="btn btn-success">Añadir Proveedor</a>
+            </div>
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>ID Proveedor</th>
+                        <th>Nombre</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="proveedor : ${proveedores}">
+                        <td th:text="${proveedor.idProveedor}"></td>
+                        <td th:text="${proveedor.nombre}"></td>
+                        <td>
+                            <a th:href="@{'/proveedores/' + ${proveedor.idProveedor}}" class="btn btn-outline-primary btn-sm">Ver</a>
+                            <a th:href="@{'/proveedores/editar/' + ${proveedor.idProveedor}}" class="btn btn-outline-warning btn-sm">Editar</a>
+                            <a th:href="@{'/proveedores/eliminar/' + ${proveedor.idProveedor}}" class="btn btn-outline-danger btn-sm">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <footer th:replace="~{layout/plantilla :: footer}" class="w-100 bg-primary text-white py-3 text-center"/>
+</body>
+</html>

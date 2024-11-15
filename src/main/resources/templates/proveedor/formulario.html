@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${proveedor.idProveedor != null} ? 'Editar Proveedor' : 'Nuevo Proveedor'"></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body class="bg-dark text-white">
+    <header th:replace="~{layout/plantilla :: header}" class="w-100 bg-primary text-white py-4 text-center">
+        <h2 th:text="${proveedor.idProveedor != null} ? 'Editar Proveedor' : 'Nuevo Proveedor'"></h2>
+    </header>
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card bg-dark text-white shadow-lg">
+                        <div class="card-body">
+                            <form th:action="${proveedor.idProveedor != null} ? @{/proveedores/actualizar/{idProveedor}(idProveedor=${proveedor.idProveedor})} : @{/proveedores}" th:object="${proveedor}" method="post">
+                                <div class="form-group mb-3">
+                                    <label for="nombre">Nombre:</label>
+                                    <input type="text" id="nombre" th:field="*{nombre}" class="form-control bg-dark text-white" placeholder="Nombre del Proveedor" required='required'/>
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-success">Guardar</button>
+                                </div>
+                            </form>
+                            <div class="text-center mt-3">
+                                <a th:href="@{/proveedores}" class="btn btn-outline-light">Cancelar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer th:replace="~{layout/plantilla :: footer}" class="w-100 bg-primary text-white py-3 text-center"/>
+</body>
+</html>

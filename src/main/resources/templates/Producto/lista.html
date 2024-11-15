@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Productos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body class="bg-dark text-white">
+    <header th:replace="~{layout/plantilla :: header}" class="w-100 bg-primary text-white py-4 text-center">
+        <h2>Gestión de Productos</h2>
+    </header>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h3>Lista de Productos</h3>
+                <a href="/productos/nuevo" class="btn btn-success">Añadir Nuevo Producto</a>
+            </div>
+
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Descripción</th>
+                        <th>Detalle</th>
+                        <th>Precio</th>
+                        <th>Existencia</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="producto : ${productos}">
+                        <td th:text="${producto.idProducto}"></td>
+                        <td th:text="${producto.descripcion}"></td>
+                        <td th:text="${producto.detalle}"></td>
+                        <td th:text="${producto.precio}"></td>
+                        <td th:text="${producto.existencia}"></td>
+                        <td>
+                            <a th:href="@{'/productos/' + ${producto.idProducto}}" class="btn btn-outline-primary btn-sm">Ver</a>
+                            <a th:href="@{'/productos/editar/' + ${producto.idProducto}}" class="btn btn-outline-warning btn-sm">Editar</a>
+                            <a th:href="@{'/productos/eliminar/' + ${producto.idProducto}}" class="btn btn-outline-danger btn-sm">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer th:replace="~{layout/plantilla :: footer}" class="w-100 bg-primary text-white py-3 text-center"/>
+</body>
+</html>

@@ -7,9 +7,58 @@
     <meta charset="UTF-8"/>
     <!-- Enlace a Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    
+    <style>
+        /* Colores y estilos para el catálogo de entidades en tema oscuro */
+        .catalog-dark {
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        .card-body {
+            background-color: #3a3a3a;
+            color: #e0e0e0;
+            border: none;
+        }
+        .card-title {
+            color: #d4d4d4;
+        }
+        .card-footer {
+            background-color: #2c2c2c;
+        }
+        .text-muted {
+            color: #b0b0b0 !important;
+        }
+        /* Botones con colores neutros */
+        .btn-outline-primary {
+            color: #ffffff;
+            border-color: #6c757d;
+        }
+        .btn-outline-primary:hover {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .btn-outline-warning {
+            color: #ffffff;
+            border-color: #adb5bd;
+        }
+        .btn-outline-warning:hover {
+            background-color: #adb5bd;
+            border-color: #adb5bd;
+        }
+        .btn-outline-danger {
+            color: #ffffff;
+            border-color: #868e96;
+        }
+        .btn-outline-danger:hover {
+            background-color: #868e96;
+            border-color: #868e96;
+        }
+    </style>
 </head>
 
-<body class="bg-light">
+<body class="bg-dark text-white">
 
     <!-- Header en la parte superior -->
     <header th:replace="~{layout/plantilla :: header}" class="w-100 bg-primary text-white py-4 text-center">
@@ -17,7 +66,7 @@
     </header>
 
     <!-- Sección principal del catálogo de entidades -->
-    <section class="py-5">
+    <section class="py-5" >
         <div class="container">
             <div class="text-center mb-4">
                 <h3 class="text-dark">Catálogo de Entidades</h3>
@@ -25,27 +74,29 @@
             </div>
 
             <!-- Grid de tarjetas -->
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div class="col" th:each="entidad : ${entidades}">
-                    <div class="card h-100 shadow-sm border-0">
+            <div class="row  bg-dark row-cols-1 row-cols-md-3 g-4">
+                <div class="col  bg-dark" th:each="entidad : ${entidades}">
+                    <div class="card  bg-dark h-100 shadow-sm border-0">
                       
-                        
-                        <div class="card-body">
-                            <h5 class="card-title text-primary" th:text="${entidad.name}">Nombre de la Entidad</h5>
-                            <p class="card-text text-muted" th:text="${entidad.price}">Descripción o Precio</p>
+                        <div class="card bg-dark text-white shadow-lg text-center mb-4">
+                            <h5 class="card-title " th:text="${entidad.name}">Nombre de la Entidad</h5>
+                            <p class="card-text " th:text="${entidad.price}">Descripción o Precio</p>
                             <p class="card-text">ID: <span th:text="${entidad.id}">12345</span></p>
                         </div>
-
-                        <div class="card-footer bg-white d-flex justify-content-around">
+                        <div class="card-footer d-flex justify-content-around shadow-lg bg-dark">
                             <a th:href="@{'/entidades/' + ${entidad.id}}" class="btn btn-outline-primary btn-sm">Ver</a>
-                            <a th:href="@{'/entidades/editar/' + ${entidad.id}}" class="btn btn-outline-warning btn-sm">Editar</a>
-                            <a th:href="@{'/entidades/eliminar/' + ${entidad.id}}" class="btn btn-outline-danger btn-sm">Eliminar</a>
+                            <a th:href="@{'/entidades/editar/' + ${entidad.id}}" class="btn btn-outline-primary btn-sm">Editar</a>
+                            <a th:href="@{'/entidades/eliminar/' + ${entidad.id}}" class="btn btn-outline-primary btn-sm">Eliminar</a>
                         </div>
+                        
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <footer th:replace="~{layout/plantilla :: footer}"/>
 </body>
+
+
 </html>

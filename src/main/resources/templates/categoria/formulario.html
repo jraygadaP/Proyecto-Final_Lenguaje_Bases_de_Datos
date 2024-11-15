@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${categoria.idCategoria != null} ? 'Editar Categoría' : 'Nueva Categoría'"></title>
+</head>
+<body>
+    <h1 th:text="${categoria.idCategoria != null} ? 'Editar Categoría' : 'Nueva Categoría'"></h1>
+    <form th:action="${categoria.idCategoria != null} ? @{/categorias/actualizar/{id}(id=${categoria.idCategoria})} : @{/categorias}" th:object="${categoria}" method="post">
+        <label for="descripcion">Descripción:</label>
+        <input type="text" id="descripcion" th:field="*{descripcion}" required="required" />
+        
+        <label for="rutaImagen">Ruta Imagen:</label>
+        <input type="text" id="rutaImagen" th:field="*{rutaImagen}" />
+        
+        <label for="activo">Activo:</label>
+        <input type="checkbox" id="activo" th:field="*{activo}" />
+        
+        <button type="submit">Guardar</button>
+    </form>
+    <a th:href="@{/categorias}">Cancelar</a>
+</body>
+</html>

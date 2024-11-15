@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detalles de la Categoría</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+</head>
+<body class="bg-dark text-white">
+    <header th:replace="~{layout/plantilla :: header}" class="w-100 bg-primary text-white py-4 text-center">
+        <h2>Detalles de la Categoría</h2>
+    </header>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="card bg-dark text-white shadow-lg">
+                <div class="card-body text-center">
+                    <p class="card-text">ID: <span th:text="${categoria.idCategoria}">12345</span></p>
+                    <p class="card-text">Descripción: <span th:text="${categoria.descripcion}">Descripción de la Categoría</span></p>
+                    <p class="card-text">Activo: <span th:text="${categoria.activo} ? 'Sí' : 'No'">Sí</span></p>
+                    <a href="/categorias" class="btn btn-outline-light mt-4">Volver a la Lista</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer th:replace="~{layout/plantilla :: footer}" class="w-100 bg-primary text-white py-3 text-center"></footer>
+</body>
+</html>

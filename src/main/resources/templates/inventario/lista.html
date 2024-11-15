@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Materiales</title>
+</head>
+<body>
+    <h1>Inventario de Materiales</h1>
+    <a th:href="@{/inventario/nuevo}">Nuevo Material</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tipo de Material</th>
+                <th>Cantidad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="material : ${inventario}">
+                <td th:text="${material.idMaterial}"></td>
+                <td th:text="${material.tipoMaterial}"></td>
+                <td th:text="${material.cantidad}"></td>
+                <td>
+                    <a th:href="@{'/inventario/' + ${material.idMaterial}}">Ver</a>
+                    <a th:href="@{'/inventario/editar/' + ${material.idMaterial}}">Editar</a>
+                    <a th:href="@{'/inventario/eliminar/' + ${material.idMaterial}}">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
