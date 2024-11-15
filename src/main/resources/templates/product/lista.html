@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+    <head>
+        <title>TechShop</title>
+    </head>
+<body>
+    <h1>Lista de Entidades</h1>
+    <a href="/entidades/nueva">Nueva Entidad</a>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+        </tr>
+        <tr th:each="entidad : ${entidades}">
+            <td th:text="${entidad.id}"></td>
+            <td th:text="${entidad.name}"></td>
+            <td th:text="${entidad.price}"></td>
+            <td>
+                <a th:href="@{'/entidades/' + ${entidad.id}}">Ver</a>
+                <a th:href="@{'/entidades/editar/' + ${entidad.id}}">Editar</a>
+                <a th:href="@{'/entidades/eliminar/' + ${entidad.id}}">Eliminar</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

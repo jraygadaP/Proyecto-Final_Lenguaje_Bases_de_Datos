@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+
+<head>
+    <title th:text="${entidad.id != null} ? 'Editar Entidad' : 'Nueva Entidad'">Entidad</title>
+</head>
+<body>
+    <h1 th:text="${entidad.id != null} ? 'Editar Entidad' : 'Nueva Entidad'"></h1>
+    <form th:action="${entidad.id != null} ? @{/entidades/actualizar/{id}(id=${entidad.id})} : @{/entidades}"
+          th:object="${entidad}" method="post">
+
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" th:field="*{name}" required="required" />
+
+        <label for="price">Precio:</label>
+        <input type="text" id="price" th:field="*{price}" required="required" />
+
+        <button type="submit" th:text="${entidad.id != null} ? 'Actualizar' : 'Crear'"></button>
+        <a href="/entidades">Cancelar</a>
+    </form>
+</body>
+</html>

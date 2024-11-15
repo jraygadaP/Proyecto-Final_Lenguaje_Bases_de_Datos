@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+<head>
+    <title>Detalles de la Entidad</title>
+</head>
+<body>
+    <h1>Detalles de la Entidad</h1>
+    
+    <p><strong>ID:</strong> <span th:text="${entidad.id}"></span></p>
+    <p><strong>Name</strong> <span th:text="${entidad.name}"></span></p>
+    <p><strong>Price</strong> <span th:text="${entidad.price}"></span></p>
+    
+    <a th:href="@{'/entidades/editar/' + ${entidad.id}}">Editar</a>
+    <a th:href="@{'/entidades/eliminar/' + ${entidad.id}}" onclick="return confirm('¿Estás seguro de que deseas eliminar esta entidad?')">Eliminar</a>
+    <a href="/entidades">Volver a la Lista</a>
+</body>
+</html>
