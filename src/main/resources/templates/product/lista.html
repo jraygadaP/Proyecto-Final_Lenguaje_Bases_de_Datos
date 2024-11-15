@@ -1,30 +1,51 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:sec="http://thymeleaf.org/extras/spring-security">
-    <head>
-        <title>TechShop</title>
-    </head>
-<body>
-    <h1>Lista de Entidades</h1>
-    <a href="/entidades/nueva">Nueva Entidad</a>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Acciones</th>
-        </tr>
-        <tr th:each="entidad : ${entidades}">
-            <td th:text="${entidad.id}"></td>
-            <td th:text="${entidad.name}"></td>
-            <td th:text="${entidad.price}"></td>
-            <td>
-                <a th:href="@{'/entidades/' + ${entidad.id}}">Ver</a>
-                <a th:href="@{'/entidades/editar/' + ${entidad.id}}">Editar</a>
-                <a th:href="@{'/entidades/eliminar/' + ${entidad.id}}">Eliminar</a>
-            </td>
-        </tr>
-    </table>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/plantilla :: head}">
+    <title>TechShop</title>
+    <meta charset="UTF-8"/>
+    <!-- Enlace a Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+
+<body class="bg-light">
+
+    <!-- Header en la parte superior -->
+    <header th:replace="~{layout/plantilla :: header}" class="w-100 bg-primary text-white py-4 text-center">
+        <h2>TechShop - Lista de Entidades</h2>
+    </header>
+
+    <!-- Sección principal del catálogo de entidades -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h3 class="text-dark">Catálogo de Entidades</h3>
+                <a href="/entidades/nueva" class="btn btn-success ">Añadir Nueva Entidad</a>
+            </div>
+
+            <!-- Grid de tarjetas -->
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col" th:each="entidad : ${entidades}">
+                    <div class="card h-100 shadow-sm border-0">
+                      
+                        
+                        <div class="card-body">
+                            <h5 class="card-title text-primary" th:text="${entidad.name}">Nombre de la Entidad</h5>
+                            <p class="card-text text-muted" th:text="${entidad.price}">Descripción o Precio</p>
+                            <p class="card-text">ID: <span th:text="${entidad.id}">12345</span></p>
+                        </div>
+
+                        <div class="card-footer bg-white d-flex justify-content-around">
+                            <a th:href="@{'/entidades/' + ${entidad.id}}" class="btn btn-outline-primary btn-sm">Ver</a>
+                            <a th:href="@{'/entidades/editar/' + ${entidad.id}}" class="btn btn-outline-warning btn-sm">Editar</a>
+                            <a th:href="@{'/entidades/eliminar/' + ${entidad.id}}" class="btn btn-outline-danger btn-sm">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </body>
 </html>

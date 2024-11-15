@@ -27,25 +27,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav" sec:authorize="hasRole('ROLE_VENDEDOR')">
-                            <li class="nav-item "><a class="nav-link" th:href="@{/categoria/listado}">Categorias</a></li>
+
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/producto/listado}">Productos</a></li>  
-                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/cita/listado}">Agenda tu Cita</a></li>      
+ 
                             <li class="nav-item">
                                 <a class="nav-link" href="#">SERVICIOS</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" th:href="@{/piel/listado}">CUIDADO DE LA PIEL</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" th:href="@{/maquillaje/listado}">MAQUILLAJE</a>
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" href="#">CONTACTENOS</a>
-                            </li>
-
-                            <li "nav-item">
-                                <a class="nav-link" th:href="@{/usuario/listado}">USUARIOS</a>
                             </li>
                             
                             <li "nav-item">
