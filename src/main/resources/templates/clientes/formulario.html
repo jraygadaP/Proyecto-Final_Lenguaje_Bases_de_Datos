@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${cliente.idCliente != null} ? 'Editar Cliente' : 'Nuevo Cliente'">Cliente</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body class="bg-dark text-white">
+    <header class="w-100 bg-primary text-white py-4 text-center">
+        <h2>Distrito Belleza - Gestión de Clientes</h2>
+    </header>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card bg-dark text-white shadow-lg">
+                        <div class="card-body">
+                            <h4 class="card-title text-center mb-4" th:text="${cliente.idCliente != null} ? 'Editar Cliente' : 'Nuevo Cliente'"></h4>
+                            <form th:action="${cliente.idCliente != null} ? @{/clientes/actualizar/{id}(id=${cliente.idCliente})} : @{/clientes}"
+                                  th:object="${cliente}" method="post">
+                                <div class="form-group mb-3">
+                                    <label for="idUsuario">ID Usuario:</label>
+                                    <input type="number" id="idUsuario" th:field="*{idUsuario}" class="form-control bg-dark text-white" placeholder="ID del Usuario" required="required"/>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="nombre">Nombre:</label>
+                                    <input type="text" id="nombre" th:field="*{nombre}" class="form-control bg-dark text-white" placeholder="Nombre del Cliente" required="required"/>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="numeroFactura">Número Factura:</label>
+                                    <input type="text" id="numeroFactura" th:field="*{numeroFactura}" class="form-control bg-dark text-white" placeholder="Número de Factura" required="required"/>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="correo">Correo:</label>
+                                    <input type="email" id="correo" th:field="*{correo}" class="form-control bg-dark text-white" placeholder="Correo Electrónico" required="required"/>
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                </div>
+                            </form>
+                            <div class="text-center mt-3">
+                                <a href="/clientes" class="btn btn-danger">Cancelar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+

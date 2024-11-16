@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Empleados</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body class="bg-dark text-white">
+    <header class="w-100 bg-primary text-white py-4 text-center">
+        <h2>Distrito Belleza - Lista de Empleados</h2>
+    </header>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h3>Catálogo de Empleados</h3>
+                <a href="/empleados/nuevo" class="btn btn-success">Añadir Nuevo Empleado</a>
+            </div>
+
+            <!-- Grid de tarjetas -->
+            <div class="row">
+                <div class="col-md-4 mb-3" th:each="empleado : ${empleados}">
+                    <div class="card bg-dark text-white h-100 shadow-lg">
+                        <div class="card-body text-center">
+                            <h5 class="card-title" th:text="${empleado.nombre} + ' ' + ${empleado.primerApellido}"></h5>
+                            <p class="card-text">Puesto: <span th:text="${empleado.puesto}"></span></p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-around">
+                            <a th:href="@{'/empleados/' + ${empleado.idEmpleado}}" class="btn btn-outline-primary btn-sm">Ver</a>
+                            <a th:href="@{'/empleados/editar/' + ${empleado.idEmpleado}}" class="btn btn-outline-warning btn-sm">Editar</a>
+                            <a th:href="@{'/empleados/eliminar/' + ${empleado.idEmpleado}}" class="btn btn-outline-danger btn-sm">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Citas</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body class="bg-dark text-white">
+    <header class="w-100 bg-primary text-white py-4 text-center">
+        <h2>Distrito Belleza - Lista de Citas</h2>
+    </header>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h3>Catálogo de Citas</h3>
+                <a href="/citas/nueva" class="btn btn-success">Añadir Nueva Cita</a>
+            </div>
+
+            <!-- Tabla de citas -->
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>ID Cita</th>
+                        <th>ID Usuario</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Descripción</th>
+                        <th>Activo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="cita : ${citas}">
+                        <td th:text="${cita.idCita}"></td>
+                        <td th:text="${cita.idUsuario}"></td>
+                        <td th:text="${cita.fecha}"></td>
+                        <td th:text="${cita.hora}"></td>
+                        <td th:text="${cita.descripcion}"></td>
+                        <td th:text="${cita.activo ? 'Sí' : 'No'}"></td>
+                        <td>
+                            <a th:href="@{'/citas/' + ${cita.idCita}}" class="btn btn-outline-primary btn-sm">Ver</a>
+                            <a th:href="@{'/citas/editar/' + ${cita.idCita}}" class="btn btn-outline-warning btn-sm">Editar</a>
+                            <a th:href="@{'/citas/eliminar/' + ${cita.idCita}}" class="btn btn-outline-danger btn-sm">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</body>
+</html>
+

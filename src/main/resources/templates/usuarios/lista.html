@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Usuarios</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body class="bg-dark text-white">
+    <header class="w-100 bg-primary text-white py-4 text-center">
+        <h2>Distrito Belleza - Lista de Usuarios</h2>
+    </header>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h3>Catálogo de Usuarios</h3>
+                <a href="/usuarios/nuevo" class="btn btn-success">Añadir Nuevo Usuario</a>
+            </div>
+
+            <!-- Tabla de usuarios -->
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>ID Usuario</th>
+                        <th>Username</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Correo</th>
+                        <th>Teléfono</th>
+                        <th>Activo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="usuario : ${usuarios}">
+                        <td th:text="${usuario.idUsuario}"></td>
+                        <td th:text="${usuario.username}"></td>
+                        <td th:text="${usuario.nombre}"></td>
+                        <td th:text="${usuario.apellido}"></td>
+                        <td th:text="${usuario.correo}"></td>
+                        <td th:text="${usuario.telefono}"></td>
+                        <td th:text="${usuario.activo != null && usuario.activo ? 'Sí' : 'No'}"></td>
+                        <td>
+                            <a th:href="@{'/usuarios/' + ${usuario.idUsuario}}" class="btn btn-outline-primary btn-sm">Ver</a>
+                            <a th:href="@{'/usuarios/editar/' + ${usuario.idUsuario}}" class="btn btn-outline-warning btn-sm">Editar</a>
+                            <a th:href="@{'/usuarios/eliminar/' + ${usuario.idUsuario}}" class="btn btn-outline-danger btn-sm">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</body>
+</html>
+

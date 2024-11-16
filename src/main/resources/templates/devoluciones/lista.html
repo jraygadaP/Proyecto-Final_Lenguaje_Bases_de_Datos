@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Devoluciones</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body class="bg-dark text-white">
+    <header class="w-100 bg-primary text-white py-4 text-center">
+        <h2>Distrito Belleza - Lista de Devoluciones</h2>
+    </header>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h3>Catálogo de Devoluciones</h3>
+                <a href="/devoluciones/nueva" class="btn btn-success">Añadir Nueva Devolución</a>
+            </div>
+
+            <!-- Tabla de devoluciones -->
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>ID Devolución</th>
+                        <th>ID Cliente</th>
+                        <th>Fecha Devolución</th>
+                        <th>Motivo</th>
+                        <th>Estado Devolución</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="devolucion : ${devoluciones}">
+                        <td th:text="${devolucion.idDevolucion}"></td>
+                        <td th:text="${devolucion.idCliente}"></td>
+                        <td th:text="${devolucion.fechaDevolucion}"></td>
+                        <td th:text="${devolucion.motivo}"></td>
+                        <td th:text="${devolucion.estadoDevolucion}"></td>
+                        <td>
+                            <a th:href="@{'/devoluciones/' + ${devolucion.idDevolucion}}" class="btn btn-outline-primary btn-sm">Ver</a>
+                            <a th:href="@{'/devoluciones/editar/' + ${devolucion.idDevolucion}}" class="btn btn-outline-warning btn-sm">Editar</a>
+                            <a th:href="@{'/devoluciones/eliminar/' + ${devolucion.idDevolucion}}" class="btn btn-outline-danger btn-sm">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</body>
+</html>
+

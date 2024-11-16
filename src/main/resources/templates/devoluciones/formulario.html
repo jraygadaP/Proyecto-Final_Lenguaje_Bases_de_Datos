@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${devolucion.idDevolucion != null} ? 'Editar Devolución' : 'Nueva Devolución'">Devolución</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body class="bg-dark text-white">
+    <header class="w-100 bg-primary text-white py-4 text-center">
+        <h2>Distrito Belleza - Gestión de Devoluciones</h2>
+    </header>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card bg-dark text-white shadow-lg">
+                        <div class="card-body">
+                            <h4 class="card-title text-center mb-4" th:text="${devolucion.idDevolucion != null} ? 'Editar Devolución' : 'Nueva Devolución'"></h4>
+                            <form th:action="${devolucion.idDevolucion != null} ? @{/devoluciones/actualizar/{id}(id=${devolucion.idDevolucion})} : @{/devoluciones}"
+                                  th:object="${devolucion}" method="post">
+                                <div class="form-group mb-3">
+                                    <label for="idCliente">ID Cliente:</label>
+                                    <input type="number" id="idCliente" th:field="*{idCliente}" class="form-control bg-dark text-white" placeholder="ID del Cliente" required="required"/>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="fechaDevolucion">Fecha Devolución:</label>
+                                    <input type="date" id="fechaDevolucion" th:field="*{fechaDevolucion}" class="form-control bg-dark text-white" required="required"/>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="motivo">Motivo:</label>
+                                    <textarea id="motivo" th:field="*{motivo}" class="form-control bg-dark text-white" placeholder="Motivo de la devolución" rows="3"></textarea>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="estadoDevolucion">Estado Devolución:</label>
+                                    <select id="estadoDevolucion" th:field="*{estadoDevolucion}" class="form-control bg-dark text-white">
+                                        <option value="Pendiente" th:selected="${devolucion.estadoDevolucion == 'Pendiente'}">Pendiente</option>
+                                        <option value="Aprobada" th:selected="${devolucion.estadoDevolucion == 'Aprobada'}">Aprobada</option>
+                                        <option value="Rechazada" th:selected="${devolucion.estadoDevolucion == 'Rechazada'}">Rechazada</option>
+                                    </select>
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                </div>
+                            </form>
+                            <div class="text-center mt-3">
+                                <a href="/devoluciones" class="btn btn-danger">Cancelar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detalle de la Devolución</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body class="bg-dark text-white">
+    <header class="w-100 bg-primary text-white py-4 text-center">
+        <h2>Distrito Belleza - Detalle de la Devolución</h2>
+    </header>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="card bg-dark text-white shadow-lg">
+                <div class="card-body text-center">
+                    <h3 class="card-title">Devolución N°: <span th:text="${devolucion.idDevolucion}"></span></h3>
+                    <p class="card-text">ID Cliente: <span th:text="${devolucion.idCliente}"></span></p>
+                    <p class="card-text">Fecha Devolución: <span th:text="${devolucion.fechaDevolucion}"></span></p>
+                    <p class="card-text">Motivo: <span th:text="${devolucion.motivo}"></span></p>
+                    <p class="card-text">Estado Devolución: <span th:text="${devolucion.estadoDevolucion}"></span></p>
+                    <a href="/devoluciones" class="btn btn-outline-light mt-4">Volver a la Lista</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

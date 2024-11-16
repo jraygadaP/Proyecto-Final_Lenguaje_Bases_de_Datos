@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Clientes</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body class="bg-dark text-white">
+    <header class="w-100 bg-primary text-white py-4 text-center">
+        <h2>Distrito Belleza - Lista de Clientes</h2>
+    </header>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h3>Catálogo de Clientes</h3>
+                <a href="/clientes/nuevo" class="btn btn-success">Añadir Nuevo Cliente</a>
+            </div>
+
+            <!-- Tabla de clientes -->
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>ID Cliente</th>
+                        <th>ID Usuario</th>
+                        <th>Nombre</th>
+                        <th>Número Factura</th>
+                        <th>Correo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="cliente : ${clientes}">
+                        <td th:text="${cliente.idCliente}"></td>
+                        <td th:text="${cliente.idUsuario}"></td>
+                        <td th:text="${cliente.nombre}"></td>
+                        <td th:text="${cliente.numeroFactura}"></td>
+                        <td th:text="${cliente.correo}"></td>
+                        <td>
+                            <a th:href="@{'/clientes/' + ${cliente.idCliente}}" class="btn btn-outline-primary btn-sm">Ver</a>
+                            <a th:href="@{'/clientes/editar/' + ${cliente.idCliente}}" class="btn btn-outline-warning btn-sm">Editar</a>
+                            <a th:href="@{'/clientes/eliminar/' + ${cliente.idCliente}}" class="btn btn-outline-danger btn-sm">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</body>
+</html>
+

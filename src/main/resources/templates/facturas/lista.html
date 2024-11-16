@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Facturas</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body class="bg-dark text-white">
+    <header class="w-100 bg-primary text-white py-4 text-center">
+        <h2>Distrito Belleza - Lista de Facturas</h2>
+    </header>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h3>Catálogo de Facturas</h3>
+                <a href="/facturas/nueva" class="btn btn-success">Añadir Nueva Factura</a>
+            </div>
+
+            <!-- Tabla de facturas -->
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>Número Factura</th>
+                        <th>ID Empleado</th>
+                        <th>ID Usuario</th>
+                        <th>ID Producto</th>
+                        <th>Fecha Emisión</th>
+                        <th>Detalle Servicio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="factura : ${facturas}">
+                        <td th:text="${factura.numeroFactura}"></td>
+                        <td th:text="${factura.idEmpleado}"></td>
+                        <td th:text="${factura.idUsuario}"></td>
+                        <td th:text="${factura.idProducto}"></td>
+                        <td th:text="${factura.fechaEmision}"></td>
+                        <td th:text="${factura.detalleServicio}"></td>
+                        <td>
+                            <a th:href="@{'/facturas/' + ${factura.numeroFactura}}" class="btn btn-outline-primary btn-sm">Ver</a>
+                            <a th:href="@{'/facturas/editar/' + ${factura.numeroFactura}}" class="btn btn-outline-warning btn-sm">Editar</a>
+                            <a th:href="@{'/facturas/eliminar/' + ${factura.numeroFactura}}" class="btn btn-outline-danger btn-sm">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</body>
+</html>
+

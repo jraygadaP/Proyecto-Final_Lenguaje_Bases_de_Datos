@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${cita.idCita != null} ? 'Editar Cita' : 'Nueva Cita'">Cita</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body class="bg-dark text-white">
+    <header class="w-100 bg-primary text-white py-4 text-center">
+        <h2>Distrito Belleza - Gestión de Citas</h2>
+    </header>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card bg-dark text-white shadow-lg">
+                        <div class="card-body">
+                            <h4 class="card-title text-center mb-4" th:text="${cita.idCita != null} ? 'Editar Cita' : 'Nueva Cita'"></h4>
+                            <form th:action="${cita.idCita != null} ? @{/citas/actualizar/{id}(id=${cita.idCita})} : @{/citas}"
+                                  th:object="${cita}" method="post">
+                                <div class="form-group mb-3">
+                                    <label for="idUsuario">ID Usuario:</label>
+                                    <input type="number" id="idUsuario" th:field="*{idUsuario}" class="form-control bg-dark text-white" placeholder="ID del Usuario" required="required"/>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="rutaImagen">Ruta Imagen:</label>
+                                    <input type="text" id="rutaImagen" th:field="*{rutaImagen}" class="form-control bg-dark text-white" placeholder="Ruta de la Imagen"/>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="fecha">Fecha:</label>
+                                    <input type="date" id="fecha" th:field="*{fecha}" class="form-control bg-dark text-white" required="required"/>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="hora">Hora:</label>
+                                    <input type="time" id="hora" th:field="*{hora}" class="form-control bg-dark text-white" required="required"/>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="descripcion">Descripción:</label>
+                                    <textarea id="descripcion" th:field="*{descripcion}" class="form-control bg-dark text-white" placeholder="Descripción de la Cita" required="required"></textarea>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="activo">Activo:</label>
+                                    <select id="activo" th:field="*{activo}" class="form-control bg-dark text-white">
+                                        <option th:value="true" th:text="'Sí'"></option>
+                                        <option th:value="false" th:text="'No'"></option>
+                                    </select>
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                </div>
+                            </form>
+                            <div class="text-center mt-3">
+                                <a href="/citas" class="btn btn-danger">Cancelar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+

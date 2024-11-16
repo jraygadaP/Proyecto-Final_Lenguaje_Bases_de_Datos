@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detalle del Usuario</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body class="bg-dark text-white">
+    <header class="w-100 bg-primary text-white py-4 text-center">
+        <h2>Distrito Belleza - Detalle del Usuario</h2>
+    </header>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="card bg-dark text-white shadow-lg">
+                <div class="card-body text-center">
+                    <h3 class="card-title">Usuario ID: <span th:text="${usuario.idUsuario}"></span></h3>
+                    <p class="card-text">Username: <span th:text="${usuario.username}"></span></p>
+                    <p class="card-text">Nombre: <span th:text="${usuario.nombre}"></span></p>
+                    <p class="card-text">Apellido: <span th:text="${usuario.apellido}"></span></p>
+                    <p class="card-text">Correo: <span th:text="${usuario.correo}"></span></p>
+                    <p class="card-text">Teléfono: <span th:text="${usuario.telefono}"></span></p>
+                    <p class="card-text">Activo: <span th:text="${usuario.activo ? 'Sí' : 'No'}"></span></p>
+                    <a href="/usuarios" class="btn btn-outline-light mt-4">Volver a la Lista</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detalle de la Factura</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body class="bg-dark text-white">
+    <header class="w-100 bg-primary text-white py-4 text-center">
+        <h2>Distrito Belleza - Detalle de la Factura</h2>
+    </header>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="card bg-dark text-white shadow-lg">
+                <div class="card-body text-center">
+                    <h3 class="card-title">Factura N°: <span th:text="${factura.numeroFactura}"></span></h3>
+                    <p class="card-text">ID Empleado: <span th:text="${factura.idEmpleado}"></span></p>
+                    <p class="card-text">ID Usuario: <span th:text="${factura.idUsuario}"></span></p>
+                    <p class="card-text">ID Producto: <span th:text="${factura.idProducto}"></span></p>
+                    <p class="card-text">Fecha Emisión: <span th:text="${factura.fechaEmision}"></span></p>
+                    <p class="card-text">Detalle del Servicio: <span th:text="${factura.detalleServicio}"></span></p>
+                    <a href="/facturas" class="btn btn-outline-light mt-4">Volver a la Lista</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
