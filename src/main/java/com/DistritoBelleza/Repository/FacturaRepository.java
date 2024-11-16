@@ -53,16 +53,36 @@ public class FacturaRepository {
         return (List<Factura>) result.get("p_cursor");
     }
 
-    public void insertFactura(Long numeroFactura, Long idEmpleado, Long idUsuario, Long idProducto, LocalDateTime fechaEmision, String detalleServicio) {
-        insertFacturaCall.execute(Map.of(
-                "p_numero_factura", numeroFactura,
-                "p_id_empleado", idEmpleado,
-                "p_id_usuario", idUsuario,
-                "p_id_producto", idProducto,
-                "p_fecha_emision", Timestamp.valueOf(fechaEmision),
-                "p_detalle_servicio", detalleServicio
-        ));
+public void insertFactura(Long numeroFactura, Long idEmpleado, Long idUsuario, Long idProducto, LocalDateTime fechaEmision, String detalleServicio) {
+    // Validar parámetros
+    if (idEmpleado == null) {
+        throw new IllegalArgumentException("El campo 'idEmpleado' no puede ser null");
     }
+    if (idUsuario == null) {
+        throw new IllegalArgumentException("El campo 'idUsuario' no puede ser null");
+    }
+    if (idProducto == null) {
+        throw new IllegalArgumentException("El campo 'idProducto' no puede ser null");
+    }
+    if (fechaEmision == null) {
+        throw new IllegalArgumentException("El campo 'fechaEmision' no puede ser null");
+    }
+    if (detalleServicio == null) {
+        throw new IllegalArgumentException("El campo 'detalleServicio' no puede ser null");
+    }
+
+    // Ejecutar procedimiento almacenado
+    insertFacturaCall.execute(Map.of(
+        "p_numero_factura", numeroFactura != null ? numeroFactura : 0,
+        "p_id_empleado", idEmpleado,
+        "p_id_usuario", idUsuario,
+        "p_id_producto", idProducto,
+        "p_fecha_emision", Timestamp.valueOf(fechaEmision),
+        "p_detalle_servicio", detalleServicio
+    ));
+}
+
+
 
     public void updateFactura(Long numeroFactura, Long idEmpleado, Long idUsuario, Long idProducto, String fechaEmision, String detalleServicio) {
         updateFacturaCall.execute(Map.of(

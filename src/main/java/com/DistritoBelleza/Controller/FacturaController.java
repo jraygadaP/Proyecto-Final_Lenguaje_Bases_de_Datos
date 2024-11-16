@@ -29,29 +29,39 @@ public class FacturaController {
         return "facturas/formulario";
     }
 
-    @PostMapping
-    public String insertFactura(@ModelAttribute Factura factura) {
-        // Obtener la fecha proporcionada como String
-        String fechaInput = factura.getFechaEmision();
-
-        // Convertir el String a LocalDateTime, manejando casos sin tiempo
-        LocalDateTime fechaEmision;
-        if (fechaInput.length() == 10) { // Si solo incluye la fecha
-            LocalDate fecha = LocalDate.parse(fechaInput, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            fechaEmision = fecha.atStartOfDay(); // Establecer como medianoche
-        } else { // Si incluye tiempo
-            fechaEmision = LocalDateTime.parse(fechaInput, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        }
-        facturaService.insertFactura(
-                factura.getNumeroFactura(),
-                factura.getIdEmpleado(),
-                factura.getIdUsuario(),
-                factura.getIdProducto(),
-                fechaEmision,
-                factura.getDetalleServicio()
-        );
-        return "redirect:/facturas";
+@PostMapping
+public String insertFactura(@ModelAttribute Factura factura) {
+    // Validaciones de campos
+    if (factura.getIdEmpleado() == null || 
+        factura.getIdUsuario() == null || 
+        factura.getIdProducto() == null || 
+        factura.getFechaEmision() == null || 
+        factura.getDetalleServicio() == null) {
+        throw new IllegalArgumentException("Todos los campos son obligatorios.");
     }
+
+     // Obtener la fecha proporcionada como String
+    String fechaInput = factura.getFechaEmision();
+
+    // Convertir la fecha de String a LocalDate (sin tiempo)
+    LocalDate fecha = LocalDate.parse(fechaInput, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+    // Convertir LocalDate a LocalDateTime estableciendo la hora inicial
+    LocalDateTime fechaEmision = fecha.atStartOfDay();
+
+    facturaService.insertFactura(
+        factura.getNumeroFactura(),
+        factura.getIdEmpleado(),
+        factura.getIdUsuario(),
+        factura.getIdProducto(),
+        fechaEmision,
+        factura.getDetalleServicio()
+    );
+
+    return "redirect:/facturas";
+}
+
+
 
     @GetMapping("/editar/{id}")
     public String mostrarFormularioEditarFactura(@PathVariable Long id, Model model) {

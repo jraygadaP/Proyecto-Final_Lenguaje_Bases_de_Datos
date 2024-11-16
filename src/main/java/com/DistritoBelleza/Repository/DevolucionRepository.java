@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -29,7 +30,7 @@ public class DevolucionRepository {
                 Devolucion devolucion = new Devolucion();
                 devolucion.setIdDevolucion(rs.getLong("id_devolucion"));
                 devolucion.setIdCliente(rs.getLong("id_cliente"));
-                devolucion.setFechaDevolucion(rs.getString("fecha_devolucion"));
+                devolucion.setFechaDevolucion(rs.getDate("fecha_devolucion").toLocalDate());
                 devolucion.setMotivo(rs.getString("motivo"));
                 devolucion.setEstadoDevolucion(rs.getString("estado_devolucion"));
                 return devolucion;
@@ -50,7 +51,7 @@ public class DevolucionRepository {
         return (List<Devolucion>) result.get("p_cursor");
     }
 
-    public void insertDevolucion(Long idCliente, String fechaDevolucion, String motivo, String estadoDevolucion) {
+    public void insertDevolucion(Long idCliente, LocalDate fechaDevolucion, String motivo, String estadoDevolucion) {
         insertDevolucionCall.execute(Map.of(
             "p_id_cliente", idCliente,
             "p_fecha_devolucion", fechaDevolucion,
@@ -59,7 +60,7 @@ public class DevolucionRepository {
         ));
     }
 
-    public void updateDevolucion(Long idDevolucion, Long idCliente, String fechaDevolucion, String motivo, String estadoDevolucion) {
+    public void updateDevolucion(Long idDevolucion, Long idCliente, LocalDate fechaDevolucion, String motivo, String estadoDevolucion) {
         updateDevolucionCall.execute(Map.of(
             "p_id_devolucion", idDevolucion,
             "p_id_cliente", idCliente,
@@ -73,4 +74,3 @@ public class DevolucionRepository {
         deleteDevolucionCall.execute(Map.of("p_id_devolucion", idDevolucion));
     }
 }
-

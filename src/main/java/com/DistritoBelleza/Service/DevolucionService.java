@@ -5,6 +5,7 @@ import com.DistritoBelleza.Repository.DevolucionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -17,11 +18,11 @@ public class DevolucionService {
         return devolucionRepository.getDevoluciones();
     }
 
-    public void insertDevolucion(Long idCliente, String fechaDevolucion, String motivo, String estadoDevolucion) {
+    public void insertDevolucion(Long idCliente, LocalDate fechaDevolucion, String motivo, String estadoDevolucion) {
         devolucionRepository.insertDevolucion(idCliente, fechaDevolucion, motivo, estadoDevolucion);
     }
 
-    public void updateDevolucion(Long idDevolucion, Long idCliente, String fechaDevolucion, String motivo, String estadoDevolucion) {
+    public void updateDevolucion(Long idDevolucion, Long idCliente, LocalDate fechaDevolucion, String motivo, String estadoDevolucion) {
         devolucionRepository.updateDevolucion(idDevolucion, idCliente, fechaDevolucion, motivo, estadoDevolucion);
     }
 
@@ -29,4 +30,3 @@ public class DevolucionService {
         devolucionRepository.deleteDevolucion(idDevolucion);
     }
 }
-

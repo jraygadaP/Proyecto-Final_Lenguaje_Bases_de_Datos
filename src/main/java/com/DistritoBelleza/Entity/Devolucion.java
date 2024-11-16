@@ -1,6 +1,7 @@
 package com.DistritoBelleza.Entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "devoluciones")
@@ -11,8 +12,14 @@ public class Devolucion {
     private Long idDevolucion;
 
     private Long idCliente;
-    private String fechaDevolucion;
+
+    @Column(nullable = false)
+    private LocalDate fechaDevolucion; // Ahora LocalDate
+
+    @Column(nullable = false)
     private String motivo;
+
+    @Column(nullable = false)
     private String estadoDevolucion;
 
     // Getters y Setters
@@ -32,11 +39,11 @@ public class Devolucion {
         this.idCliente = idCliente;
     }
 
-    public String getFechaDevolucion() {
+    public LocalDate getFechaDevolucion() {
         return fechaDevolucion;
     }
 
-    public void setFechaDevolucion(String fechaDevolucion) {
+    public void setFechaDevolucion(LocalDate fechaDevolucion) {
         this.fechaDevolucion = fechaDevolucion;
     }
 
@@ -56,4 +63,3 @@ public class Devolucion {
         this.estadoDevolucion = estadoDevolucion;
     }
 }
-
