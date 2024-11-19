@@ -89,5 +89,18 @@ public String insertCita(
         citaService.deleteCita(id);
         return "redirect:/citas";
     }
+    
+        @GetMapping("/{id}")
+public String mostrarDetalleCita(@PathVariable Long id, Model model) {
+    Cita cita = citaService.getCitas().stream()
+            .filter(c -> c.getIdCita().equals(id))
+            .findFirst()
+            .orElse(null);
+    if (cita == null) {
+        return "error/404"; // Redirige a una página 404 personalizada si no se encuentra
+    }
+    model.addAttribute("Cita", cita);
+    return "cita/detalle"; // Nombre de la plantilla de detalle
+}
 }
 

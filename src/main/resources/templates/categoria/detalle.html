@@ -2,18 +2,41 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="~{layout/plantilla :: head}">
     <title>Detalles de la Categoría</title>
+    <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        /* Estilos consistentes con el tema oscuro */
+        .card-body {
+            background-color: #3a3a3a;
+            color: #e0e0e0;
+            border: none;
+        }
+        .btn-outline-primary {
+            color: #ffffff;
+            border-color: #6c757d;
+        }
+        .btn-outline-primary:hover {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .btn-outline-light:hover {
+            background-color: #adb5bd;
+        }
+    </style>
 </head>
 <body class="bg-dark text-white">
+
+    <!-- Header -->
     <header th:replace="~{layout/plantilla :: header}" class="w-100 bg-primary text-white py-4 text-center">
         <h2>Detalles de la Categoría</h2>
     </header>
 
+    <!-- Sección principal -->
     <section class="py-5">
         <div class="container">
-            <div class="card bg-dark text-white shadow-lg">
+            <div class="card bg-dark text-white shadow-lg border-0">
                 <div class="card-body text-center">
                     <p class="card-text">ID: <span th:text="${categoria.idCategoria}">12345</span></p>
                     <p class="card-text">Descripción: <span th:text="${categoria.descripcion}">Descripción de la Categoría</span></p>
@@ -24,6 +47,7 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer th:replace="~{layout/plantilla :: footer}" class="w-100 bg-primary text-white py-3 text-center"></footer>
 </body>
 </html>

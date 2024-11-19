@@ -3,18 +3,18 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{layout/plantilla :: head}">
-    <title th:text="${entidad.id != null} ? 'Editar Entidad' : 'Nueva Entidad'">Entidad</title>
+    <title th:text="${producto.idProducto != null} ? 'Editar Producto' : 'Nuevo Producto'"></title>
     <meta charset="UTF-8"/>
-    <!-- Enlace a Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
-    
     <style>
-        /* Colores y estilos para un tema oscuro */
-        .bg-dark-custom {
+        /* Colores y estilos para el catálogo de entidades en tema oscuro */
+        .catalog-dark {
             background-color: #2c2c2c;
             color: #e0e0e0;
+            padding: 2rem;
+            border-radius: 8px;
         }
-        .card {
+        .card-body {
             background-color: #3a3a3a;
             color: #e0e0e0;
             border: none;
@@ -22,7 +22,10 @@
         .card-title {
             color: #d4d4d4;
         }
-        .text-secondary {
+        .card-footer {
+            background-color: #2c2c2c;
+        }
+        .text-muted {
             color: #b0b0b0 !important;
         }
         /* Botones con colores neutros */
@@ -34,66 +37,78 @@
             background-color: #6c757d;
             border-color: #6c757d;
         }
-        .btn-primary, .btn-danger {
+        .btn-outline-warning {
             color: #ffffff;
-            border: none;
+            border-color: #adb5bd;
         }
-        .btn-danger {
+        .btn-outline-warning:hover {
+            background-color: #adb5bd;
+            border-color: #adb5bd;
+        }
+        .btn-outline-danger {
             color: #ffffff;
+            border-color: #868e96;
+        }
+        .btn-outline-danger:hover {
             background-color: #868e96;
-        }
-        .btn-danger:hover {
-            background-color: #6c757d;
+            border-color: #868e96;
         }
     </style>
 </head>
-
 <body class="bg-dark text-white">
-
-    <!-- Header en la parte superior -->
     <header th:replace="~{layout/plantilla :: header}" class="w-100 bg-primary text-white py-4 text-center">
-        <h2>Distrito Belleza</h2>
+        <h2 th:text="${producto.idProducto != null} ? 'Editar Producto' : 'Nuevo Producto'"></h2>
     </header>
 
-    <!-- Sección del formulario en estilo tarjeta -->
     <section class="py-5">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="card shadow-lg border-0">
-                        <div class="card-body">
-                            <h4 class="card-title text-center text-light mb-4" th:text="${entidad.id != null} ? 'Editar Entidad' : 'Nueva Entidad'"></h4>
-                            
-                            <form th:action="${entidad.id != null} ? @{/entidades/actualizar/{id}(id=${entidad.id})} : @{/entidades}"
-                                  th:object="${entidad}" method="post">
-
-                                <div class="form-group mb-3">
-                                    <label for="name" class="fw-bold text-secondary">Nombre:</label>
-                                    <input type="text" id="name" th:field="*{name}" class="form-control bg-dark text-white" placeholder="Nombre de la entidad" required="required" />
-                                </div>
-
-                                <div class="form-group mb-3">
-                                    <label for="price" class="fw-bold text-secondary">Precio:</label>
-                                    <input type="text" id="price" th:field="*{price}" class="form-control bg-dark text-white" placeholder="Precio de la entidad" required="required" />
-                                </div>
-
-                                <div class="d-grid mt-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        <span th:text="${entidad.id != null} ? 'Actualizar' : 'Crear'"></span>
-                                    </button>
-                                </div>
-                            </form>
-
-                            <div class="text-center mt-3">
-                                <a href="/entidades" class="btn btn-danger">Cancelar</a>
-                            </div>
+            <div class="card bg-dark text-white shadow-lg">
+                <div class="card-body text-center">
+                    <form th:action="${producto.idProducto != null} ? @{/productos/actualizar/{id}(id=${producto.idProducto})} : @{/productos}" th:object="${producto}" method="post">
+                        <div class="form-group mb-3">
+                            <label for="idCategoria">Categoría:</label>
+                            <input type="number" id="idCategoria" th:field="*{idCategoria}" class="form-control bg-dark text-white" required="required"/>
                         </div>
+                        <div class="form-group mb-3">
+                            <label for="idMaterial">Material:</label>
+                            <input type="number" id="idMaterial" th:field="*{idMaterial}" class="form-control bg-dark text-white" required="required"/>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="descripcion">Descripción:</label>
+                            <input type="text" id="descripcion" th:field="*{descripcion}" class="form-control bg-dark text-white" required="required"/>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="detalle">Detalle:</label>
+                            <textarea id="detalle" th:field="*{detalle}" class="form-control bg-dark text-white"></textarea>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="precio">Precio:</label>
+                            <input type="number" id="precio" th:field="*{precio}" class="form-control bg-dark text-white" required="required"/>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="existencia">Existencia:</label>
+                            <input type="number" id="existencia" th:field="*{existencia}" class="form-control bg-dark text-white" required="required"/>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="rutaImagen">Ruta de la Imagen:</label>
+                            <input type="text" id="rutaImagen" th:field="*{rutaImagen}" class="form-control bg-dark text-white"/>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input type="checkbox" id="activo" th:field="*{activo}" class="form-check-input"/>
+                            <label for="activo" class="form-check-label">Activo</label>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success">Guardar</button>
+                        </div>
+                    </form>
+                    <div class="text-center mt-3">
+                        <a th:href="@{/productos}" class="btn btn-outline-light">Cancelar</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <footer th:replace="~{layout/plantilla :: footer}"/>
+
+    <footer th:replace="~{layout/plantilla :: footer}" class="w-100 bg-primary text-white py-3 text-center"/>
 </body>
 </html>

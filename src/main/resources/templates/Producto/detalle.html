@@ -2,10 +2,60 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="~{layout/plantilla :: head}">
     <title>Detalles del Producto</title>
+    <meta charset="UTF-8"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    <style>
+        /* Colores y estilos para el catálogo de entidades en tema oscuro */
+        .catalog-dark {
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        .card-body {
+            background-color: #3a3a3a;
+            color: #e0e0e0;
+            border: none;
+        }
+        .card-title {
+            color: #d4d4d4;
+        }
+        .card-footer {
+            background-color: #2c2c2c;
+        }
+        .text-muted {
+            color: #b0b0b0 !important;
+        }
+        /* Botones con colores neutros */
+        .btn-outline-primary {
+            color: #ffffff;
+            border-color: #6c757d;
+        }
+        .btn-outline-primary:hover {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .btn-outline-warning {
+            color: #ffffff;
+            border-color: #adb5bd;
+        }
+        .btn-outline-warning:hover {
+            background-color: #adb5bd;
+            border-color: #adb5bd;
+        }
+        .btn-outline-danger {
+            color: #ffffff;
+            border-color: #868e96;
+        }
+        .btn-outline-danger:hover {
+            background-color: #868e96;
+            border-color: #868e96;
+        }
+    </style>
 </head>
+
 <body class="bg-dark text-white">
     <header th:replace="~{layout/plantilla :: header}" class="w-100 bg-primary text-white py-4 text-center">
         <h2>Detalles del Producto</h2>
@@ -14,20 +64,20 @@
     <section class="py-5">
         <div class="container">
             <div class="card bg-dark text-white shadow-lg">
-                <div class="card-body">
-                    <h3 class="card-title" th:text="${producto.descripcion}">Nombre del Producto</h3>
-                    <p><strong>Detalle:</strong> <span th:text="${producto.detalle}"></span></p>
-                    <p><strong>Precio:</strong> <span th:text="${producto.precio}"></span></p>
-                    <p><strong>Existencia:</strong> <span th:text="${producto.existencia}"></span></p>
-                    <p><strong>Categoría ID:</strong> <span th:text="${producto.idCategoria}"></span></p>
-                    <p><strong>Material ID:</strong> <span th:text="${producto.idMaterial}"></span></p>
-                    <p><strong>Activo:</strong> <span th:text="${producto.activo} ? 'Sí' : 'No'"></span></p>
+                <div class="card-body text-center">
+                    <h3 class="card-title text-light" th:text="${producto.descripcion}">Nombre del Producto</h3>
+                    <p class="card-text">Detalle: <span th:text="${producto.detalle}"></span></p>
+                    <p class="card-text">Precio: <span th:text="${producto.precio}"></span></p>
+                    <p class="card-text">Existencia: <span th:text="${producto.existencia}"></span></p>
+                    <p class="card-text">Categoría ID: <span th:text="${producto.idCategoria}"></span></p>
+                    <p class="card-text">Material ID: <span th:text="${producto.idMaterial}"></span></p>
+                    <p class="card-text">Activo: <span th:text="${producto.activo} ? 'Sí' : 'No'"></span></p>
                     <a th:href="@{/productos}" class="btn btn-outline-light mt-4">Volver a la Lista</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer th:replace="~{layout/plantilla :: footer}" class="w-100 bg-primary text-white py-3 text-center"/>
+    <footer th:replace="~{layout/plantilla :: footer}"/>
 </body>
 </html>
