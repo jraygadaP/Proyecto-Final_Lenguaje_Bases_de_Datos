@@ -2,14 +2,44 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="~{layout/plantilla :: head}">
     <title>Detalles del Material</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        /* Estilo de la tarjeta */
+        .card-body {
+            background-color: #3a3a3a;
+            color: #e0e0e0;
+            border: none;
+        }
+        .btn-outline-light:hover {
+            background-color: #adb5bd;
+        }
+    </style>
 </head>
-<body>
-    <h1>Detalles del Material</h1>
-    <p>ID: <span th:text="${material.idMaterial}"></span></p>
-    <p>Tipo de Material: <span th:text="${material.tipoMaterial}"></span></p>
-    <p>Cantidad: <span th:text="${material.cantidad}"></span></p>
-    <a th:href="@{/inventario}">Volver al Inventario</a>
+<body class="bg-dark text-white">
+
+    <!-- Header -->
+    <header th:replace="~{layout/plantilla :: header}" class="w-100 bg-primary text-white py-4 text-center">
+        <h2>Detalles del Material</h2>
+    </header>
+
+    <!-- Sección principal -->
+    <section class="py-5">
+        <div class="container">
+            <div class="card bg-dark text-white shadow-lg border-0">
+                <div class="card-body text-center">
+                    <h3 class="card-title">ID: <span th:text="${material.idMaterial}"></span></h3>
+                    <p class="card-text">Tipo de Material: <span th:text="${material.tipoMaterial}"></span></p>
+                    <p class="card-text">Cantidad: <span th:text="${material.cantidad}"></span></p>
+                    <a th:href="@{/inventario}" class="btn btn-outline-light mt-4">Volver al Inventario</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer th:replace="~{layout/plantilla :: footer}" class="w-100 bg-primary text-white py-3 text-center"></footer>
 </body>
 </html>

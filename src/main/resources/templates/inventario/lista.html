@@ -2,33 +2,98 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Lista de Materiales</title>
+<head th:replace="~{layout/plantilla :: head}">
+    <title>Inventario de Materiales</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        /* Estilo del contenedor */
+        .card-body {
+            background-color: #3a3a3a;
+            color: #e0e0e0;
+            border: none;
+        }
+        .table-dark {
+            background-color: #3a3a3a;
+            color: #e0e0e0;
+        }
+        /* Botones */
+        .btn-outline-primary {
+            color: #ffffff;
+            border-color: #6c757d;
+        }
+        .btn-outline-primary:hover {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .btn-outline-warning {
+            color: #ffffff;
+            border-color: #adb5bd;
+        }
+        .btn-outline-warning:hover {
+            background-color: #adb5bd;
+            border-color: #adb5bd;
+        }
+        .btn-outline-danger {
+            color: #ffffff;
+            border-color: #868e96;
+        }
+        .btn-outline-danger:hover {
+            background-color: #868e96;
+            border-color: #868e96;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+    </style>
 </head>
-<body>
-    <h1>Inventario de Materiales</h1>
-    <a th:href="@{/inventario/nuevo}">Nuevo Material</a>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Tipo de Material</th>
-                <th>Cantidad</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="material : ${inventario}">
-                <td th:text="${material.idMaterial}"></td>
-                <td th:text="${material.tipoMaterial}"></td>
-                <td th:text="${material.cantidad}"></td>
-                <td>
-                    <a th:href="@{'/inventario/' + ${material.idMaterial}}">Ver</a>
-                    <a th:href="@{'/inventario/editar/' + ${material.idMaterial}}">Editar</a>
-                    <a th:href="@{'/inventario/eliminar/' + ${material.idMaterial}}">Eliminar</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<body class="bg-dark text-white">
+
+    <!-- Header -->
+    <header th:replace="~{layout/plantilla :: header}" class="w-100 bg-primary text-white py-4 text-center">
+        <h2>Inventario de Materiales</h2>
+    </header>
+
+    <!-- Sección principal -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h3 class="text-light">Lista de Materiales</h3>
+                <a th:href="@{/inventario/nuevo}" class="btn btn-success">Añadir Nuevo Material</a>
+            </div>
+
+            <!-- Tabla de materiales -->
+            <div class="card bg-dark text-white shadow-lg border-0">
+                <div class="card-body">
+                    <table class="table table-dark table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tipo de Material</th>
+                                <th>Cantidad</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="material : ${inventario}">
+                                <td th:text="${material.idMaterial}"></td>
+                                <td th:text="${material.tipoMaterial}"></td>
+                                <td th:text="${material.cantidad}"></td>
+                                <td>
+                                    <a th:href="@{'/inventario/' + ${material.idMaterial}}" class="btn btn-outline-primary btn-sm">Ver</a>
+                                    <a th:href="@{'/inventario/editar/' + ${material.idMaterial}}" class="btn btn-outline-warning btn-sm">Editar</a>
+                                    <a th:href="@{'/inventario/eliminar/' + ${material.idMaterial}}" class="btn btn-outline-danger btn-sm">Eliminar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer th:replace="~{layout/plantilla :: footer}" class="w-100 bg-primary text-white py-3 text-center"></footer>
 </body>
 </html>

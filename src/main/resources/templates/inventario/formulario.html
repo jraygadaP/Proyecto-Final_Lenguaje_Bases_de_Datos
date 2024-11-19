@@ -2,20 +2,72 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="~{layout/plantilla :: head}">
     <title th:text="${material.idMaterial != null} ? 'Editar Material' : 'Nuevo Material'"></title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        /* Estilo del formulario */
+        .form-control {
+            background-color: #3a3a3a;
+            color: #e0e0e0;
+            border: none;
+        }
+        .form-control:focus {
+            border-color: #6c757d;
+            box-shadow: 0 0 5px rgba(108, 117, 125, 0.5);
+        }
+        .btn-primary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .btn-primary:hover {
+            background-color: #495057;
+            border-color: #495057;
+        }
+        .btn-outline-light:hover {
+            background-color: #adb5bd;
+        }
+    </style>
 </head>
-<body>
-    <h1 th:text="${material.idMaterial != null} ? 'Editar Material' : 'Nuevo Material'"></h1>
-    <form th:action="${material.idMaterial != null} ? @{/inventario/actualizar/{id}(id=${material.idMaterial})} : @{/inventario}" th:object="${material}" method="post">
-        <label for="tipoMaterial">Tipo de Material:</label>
-        <input type="text" id="tipoMaterial" th:field="*{tipoMaterial}" required="required" />
-        
-        <label for="cantidad">Cantidad:</label>
-        <input type="number" id="cantidad" th:field="*{cantidad}" required="required" />
-        
-        <button type="submit">Guardar</button>
-    </form>
-    <a th:href="@{/inventario}">Cancelar</a>
+<body class="bg-dark text-white">
+
+    <!-- Header -->
+    <header th:replace="~{layout/plantilla :: header}" class="w-100 bg-primary text-white py-4 text-center">
+        <h2 th:text="${material.idMaterial != null} ? 'Editar Material' : 'Nuevo Material'"></h2>
+    </header>
+
+    <!-- Sección principal -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card bg-dark text-white shadow-lg">
+                        <div class="card-body">
+                            <form th:action="${material.idMaterial != null} ? @{/inventario/actualizar/{id}(id=${material.idMaterial})} : @{/inventario}" th:object="${material}" method="post">
+                                <div class="form-group mb-3">
+                                    <label for="tipoMaterial">Tipo de Material:</label>
+                                    <input type="text" id="tipoMaterial" th:field="*{tipoMaterial}" class="form-control" required="required" />
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="cantidad">Cantidad:</label>
+                                    <input type="number" id="cantidad" th:field="*{cantidad}" class="form-control" required="required" />
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                </div>
+                            </form>
+                            <div class="text-center mt-3">
+                                <a th:href="@{/inventario}" class="btn btn-outline-light">Cancelar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer th:replace="~{layout/plantilla :: footer}" class="w-100 bg-primary text-white py-3 text-center"></footer>
 </body>
 </html>
