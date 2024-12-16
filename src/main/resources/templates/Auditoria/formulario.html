@@ -43,11 +43,6 @@
 
     <!-- Sección principal -->
     <section class="py-5">
-        
-        <!-- Barra lateral -->
-            <div class="col-md-3 bg-dark p-0">
-                <div th:replace="~{layout/plantilla :: barra-lateral}"></div>
-            </div>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
@@ -104,3 +99,44 @@
     <footer th:replace="~{layout/plantilla :: footer}" class="w-100 bg-primary text-white py-3 text-center"></footer>
 </body>
 </html>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/plantilla :: head}">
+    <title>Auditoría</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+</head>
+<body class="bg-dark text-white">
+    <header class="bg-primary text-white text-center py-4">
+        <h2>Registros de Auditoría</h2>
+    </header>
+    <div class="container mt-5">
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tabla Afectada</th>
+                    <th>Acción</th>
+                    <th>Datos Afectados</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+    <tr th:if="${#lists.isEmpty(auditoria)}">
+        <td colspan="5" class="text-center">No hay registros de auditoría.</td>
+    </tr>
+    <tr th:each="registro : ${auditoria}">
+        <td th:text="${registro.id}"></td>
+        <td th:text="${registro.tablaAfectada}"></td>
+        <td th:text="${registro.accion}"></td>
+        <td th:text="${registro.datosAfectados}"></td>
+        <td th:text="${#temporals.format(registro.fecha, 'dd/MM/yyyy HH:mm:ss')}"></td>
+
+    </tr>
+</tbody>
+
+        </table>
+    </div>
+</body>
+</html>-->

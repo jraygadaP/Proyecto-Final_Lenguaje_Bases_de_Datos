@@ -90,6 +90,12 @@ public String insertCita(
         return "redirect:/citas";
     }
     
+        @GetMapping("/atendidas")
+    public String listarCitasAtendidas(Model model) {
+        model.addAttribute("citasAtendidas", citaService.getCitasAtendidas());
+        return "citas/atendidas";
+    }
+    
         @GetMapping("/{id}")
 public String mostrarDetalleCita(@PathVariable Long id, Model model) {
     Cita cita = citaService.getCitas().stream()
@@ -102,5 +108,7 @@ public String mostrarDetalleCita(@PathVariable Long id, Model model) {
     model.addAttribute("Cita", cita);
     return "cita/detalle"; // Nombre de la plantilla de detalle
 }
+
+
 }
 

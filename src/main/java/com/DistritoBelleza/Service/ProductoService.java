@@ -28,4 +28,14 @@ public class ProductoService {
     public void deleteProducto(Long idProducto) {
         productoRepository.deleteProducto(idProducto);
     }
+
+
+    public List<Producto> getInventarioDisponible() {
+        return productoRepository.getInventarioDisponible();
+    }
+
+    public List<Producto> getPromocionesInactivas() {
+    return productoRepository.getPromocionesInactivas();
+}
+
 }

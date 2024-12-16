@@ -17,6 +17,7 @@ public class CitaService {
         return citaRepository.getCitas();
     }
 
+
     public void insertCita(Long idUsuario, String rutaImagen, String fecha, String hora, String descripcion, Boolean activo) {
         citaRepository.insertCita(idUsuario, rutaImagen, fecha, hora, descripcion, activo);
     }
@@ -27,6 +28,10 @@ public class CitaService {
 
     public void deleteCita(Long idCita) {
         citaRepository.deleteCita(idCita);
+    }
+    
+        public List<Cita> getCitasAtendidas() {
+        return citaRepository.getCitasAtendidas();
     }
 }
 

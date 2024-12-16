@@ -22,11 +22,26 @@ public class CitaRepository {
     private SimpleJdbcCall insertCitaCall;
     private SimpleJdbcCall updateCitaCall;
     private SimpleJdbcCall deleteCitaCall;
+    private SimpleJdbcCall getCitasAtendidasCall;
 
     @PostConstruct
     public void init() {
         getCitasCall = new SimpleJdbcCall(jdbcTemplate)
                 .withProcedureName("get_citas")
+                .returningResultSet("p_cursor", (rs, rowNum) -> {
+                    Cita cita = new Cita();
+                    cita.setIdCita(rs.getLong("id_cita"));
+                    cita.setIdUsuario(rs.getLong("id_usuario"));
+                    cita.setRutaImagen(rs.getString("ruta_imagen"));
+                    cita.setFecha(rs.getString("fecha"));
+                    cita.setHora(rs.getString("hora"));
+                    cita.setDescripcion(rs.getString("descripcion"));
+                    cita.setActivo(rs.getBoolean("activo"));
+                    return cita;
+                });
+
+        getCitasAtendidasCall = new SimpleJdbcCall(jdbcTemplate)
+                .withProcedureName("get_citas_atendidas")
                 .returningResultSet("p_cursor", (rs, rowNum) -> {
                     Cita cita = new Cita();
                     cita.setIdCita(rs.getLong("id_cita"));
@@ -54,6 +69,11 @@ public class CitaRepository {
         return (List<Cita>) result.get("p_cursor");
     }
 
+    public List<Cita> getCitasAtendidas() {
+        Map<String, Object> result = getCitasAtendidasCall.execute();
+        return (List<Cita>) result.get("p_cursor");
+    }
+
     public void insertCita(Long idUsuario, String rutaImagen, String fecha, String hora, String descripcion, Boolean activo) {
         LocalDateTime dateTime = LocalDateTime.parse(fecha + "T" + hora); // Combina fecha y hora
         Timestamp timestamp = Timestamp.valueOf(dateTime);
@@ -65,6 +85,7 @@ public class CitaRepository {
                 "p_descripcion", descripcion,
                 "p_activo", activo
         ));
+
     }
 
     public void updateCita(Long idCita, Long idUsuario, String rutaImagen, String fecha, String hora, String descripcion, Boolean activo) {

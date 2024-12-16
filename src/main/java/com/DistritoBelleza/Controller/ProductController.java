@@ -67,4 +67,6 @@ public String mostrarEntidad(@PathVariable Long id, Model model) {
     return "product/detalle";  // Nombre de la plantilla
 }
 
+
+
 }

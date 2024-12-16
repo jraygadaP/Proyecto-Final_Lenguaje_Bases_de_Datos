@@ -50,6 +50,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         .bg-dark-custom {
             background-color: #2c2c2c; /* Oscuro personalizado */
     color: white; /* Texto blanco */
+    
+    .bg-blue-dark {
+        background-color: #1a1f36; /* Azul muy oscuro */
+    }
+
+    /* Cuadro gris oscuro del título */
+    .page-title {
+        background-color: #3a3a3a; /* Gris oscuro */
+        color: #ffffff; /* Texto blanco */
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    /* Estilo de la barra de navegación */
+    .bg-dark-custom {
+        background-color: #2c2c2c; /* Oscuro personalizado */
+        color: white;
+    }
 }
     </style>
     </head>
@@ -62,104 +80,40 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
         <!-- Header -->
 
-        <header>
-        <!-- Título de la página -->
-        <div class="page-title">
-            Distrito Belleza
+<header>
+    <!-- Título de la página con cuadro gris oscuro -->
+    <div class="bg-blue-dark py-4">
+        <div class="page-title text-center py-2 mx-auto" style="background-color: #3a3a3a; color: #ffffff; border-radius: 8px; max-width: 600px;">
+            <h2>Distrito Belleza</h2>
         </div>
+    </div>
 
-        <!-- Barra de navegación -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark-custom">
-            <div class="container-fluid">
-                <!-- Botón para móvil -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark-custom">
+        <div class="container-fluid">
+            <!-- Botón para móvil -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <!-- Menú desplegable centrado -->
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white px-3" href="#" id="menuDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-list"></i> Menú
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="menuDropdown">
-                                <li>
-                                    <a class="dropdown-item" href="/productos">
-                                        <i class="bi bi-box-seam"></i> Productos
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="/categorias">
-                                        <i class="bi bi-box-seam"></i> Categorias
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="/citas">
-                                        <i class="bi bi-box-seam"></i> Citas
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="/devoluciones">
-                                        <i class="bi bi-people"></i> Devoluciones
-                                    </a>
-                                </li>
+            <!-- Menú desplegable centrado -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                </ul>
 
-                               <li>
-                                    <a class="dropdown-item" href="/empleados">
-                                        <i class="bi bi-people"></i> Empleados
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="/facturas">
-                                        <i class="bi bi-people"></i> Facturas
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="/clientes">
-                                        <i class="bi bi-people"></i> Clientes
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="/gestiones-proveedores">
-                                        <i class="bi bi-people"></i> Gestion de Proveedores
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="/inventario">
-                                        <i class="bi bi-people"></i> Materiales
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="/devoluciones">
-                                        <i class="bi bi-people"></i> Devoluciones
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="/proveedores">
-                                        <i class="bi bi-people"></i> Proveedores
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="/roles">
-                                        <i class="bi bi-people"></i> Roles
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="/promociones">
-                                        <i class="bi bi-people"></i> Promociones
-                                    </a>
-                                </li>
-                                
-                                
-                                
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+                <!-- Botón de Auditorias fuera del menú desplegable -->
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-outline-light px-3" href="/auditoria">
+                            <i class="bi bi-clipboard-check"></i> Auditorías
+                        </a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
+
 
 
 
@@ -211,6 +165,65 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
         </section>
 
+        <!-- Fragmento de barra lateral -->
+<section th:fragment="barra-lateral" class="bg-dark-custom text-white vh-100 p-3" style="width: 250px;">
+    <h5 class="text-center mb-4">Navegación</h5>
+    <ul class="nav flex-column">
+        <li class="nav-item mb-2">
+            <a class="nav-link text-white" href="/productos">
+                <i class="bi bi-box-seam"></i> Productos
+            </a>
+        </li>
+        <li class="nav-item mb-2">
+            <a class="nav-link text-white" href="/categorias">
+                <i class="bi bi-box-seam"></i> Categorías
+            </a>
+        </li>
+        <li class="nav-item mb-2">
+            <a class="nav-link text-white" href="/citas">
+                <i class="bi bi-calendar"></i> Citas
+            </a>
+        </li>
+        <li class="nav-item mb-2">
+            <a class="nav-link text-white" href="/devoluciones">
+                <i class="bi bi-arrow-counterclockwise"></i> Devoluciones
+            </a>
+        </li>
+        <li class="nav-item mb-2">
+            <a class="nav-link text-white" href="/empleados">
+                <i class="bi bi-person"></i> Empleados
+            </a>
+        </li>
+        <li class="nav-item mb-2">
+            <a class="nav-link text-white" href="/facturas">
+                <i class="bi bi-receipt"></i> Facturas
+            </a>
+        </li>
+        <li class="nav-item mb-2">
+            <a class="nav-link text-white" href="/clientes">
+                <i class="bi bi-people"></i> Clientes
+            </a>
+        </li>
+        <li class="nav-item mb-2">
+            <a class="nav-link text-white" href="/inventario">
+                <i class="bi bi-box"></i> Materiales
+            </a>
+        </li>
+        <li class="nav-item mb-2">
+            <a class="nav-link text-white" href="/proveedores">
+                <i class="bi bi-truck"></i> Proveedores
+            </a>
+        </li>
+        <li class="nav-item mb-2">
+            <a class="nav-link text-white" href="/auditoria">
+                <i class="bi bi-clipboard-check"></i> Auditorías
+            </a>
+        </li>
+    </ul>
+</section>
+
+        
+        
         <footer th:fragmento="footer" class="bg-info bg-dark text-white mt-5 p-2 text-center ">
             <p>&COPY;DistritoBelleza Drechos Reservados 2025</p>
         </footer>

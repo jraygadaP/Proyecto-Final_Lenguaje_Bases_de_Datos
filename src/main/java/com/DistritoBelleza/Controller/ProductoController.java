@@ -27,6 +27,8 @@ public class ProductoController {
         model.addAttribute("producto", new Producto());
         return "producto/formulario"; // Vista para el formulario
     }
+    
+    
 
     // Insertar un nuevo producto
     @PostMapping
@@ -84,19 +86,35 @@ public class ProductoController {
         return "redirect:/productos"; // Redirige a la lista después de eliminar
     }
 
-    // Mostrar detalles de un producto
-    @GetMapping("/{id}")
-    public String mostrarDetalleProducto(@PathVariable Long id, Model model) {
-        Producto producto = productoService.getProductos().stream()
-                .filter(p -> p.getIdProducto().equals(id))
-                .findFirst()
-                .orElse(null);
 
-        if (producto == null) {
-            return "error/404"; // Redirige a una página 404 si no se encuentra el producto
-        }
+ 
 
-        model.addAttribute("producto", producto);
-        return "producto/detalle"; // Vista para los detalles del producto
+@GetMapping("/disponibles")
+public String listarProductosDisponibles(Model model) {
+    model.addAttribute("productos", productoService.getInventarioDisponible());
+    return "producto/disponibles"; // Vista que lista productos disponibles
+}
+
+
+@GetMapping("/listar/promociones-inactivas")
+public String listarPromocionesInactivas(Model model) {
+    model.addAttribute("promociones", productoService.getPromocionesInactivas());
+    return "producto/promociones-inactivas";
+}
+
+@GetMapping("/{id:\\d+}")
+public String mostrarDetalleProducto(@PathVariable Long id, Model model) {
+    Producto producto = productoService.getProductos().stream()
+            .filter(p -> p.getIdProducto().equals(id))
+            .findFirst()
+            .orElse(null);
+
+    if (producto == null) {
+        return "error/404"; // Página 404 personalizada si no se encuentra el producto
     }
+
+    model.addAttribute("producto", producto);
+    return "producto/detalle";
+}
+
 }

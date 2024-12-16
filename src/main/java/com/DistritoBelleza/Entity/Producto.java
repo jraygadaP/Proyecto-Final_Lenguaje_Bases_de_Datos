@@ -19,6 +19,10 @@ public class Producto {
     private String rutaImagen;
     private Boolean activo;
 
+    // Atributo para manejar la duración desde la vista SQL
+    @Transient // Indica que no se almacena en la base de datos
+    private Integer duracion;
+
     // Getters y Setters
     public Long getIdProducto() {
         return idProducto;
@@ -91,4 +95,16 @@ public class Producto {
     public void setActivo(Boolean activo) {
         this.activo = activo;
     }
+
+    public Integer getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(Integer duracion) {
+        this.duracion = duracion;
+    }
+    
+    
+    
+    
 }

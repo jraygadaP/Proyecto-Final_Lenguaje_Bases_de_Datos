@@ -62,4 +62,5 @@ public class InventarioMaterialesController {
         model.addAttribute("material", material);
         return "inventario/detalle";
     }
+    
 }
