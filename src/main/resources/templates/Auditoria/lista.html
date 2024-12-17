@@ -1,35 +1,102 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="~{layout/plantilla :: head}">
     <title>Lista de Auditorías</title>
+    <meta charset="UTF-8" />
+    <style>
+        /* General */
+        body {
+            background: linear-gradient(360deg, #1e1e1e, #403b39);
+            color: white;
+        }
+
+        /* Sidebar */
+        .bg-dark-custom {
+            background-color: #453c37;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar .nav-link {
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar .nav-link:hover {
+            background-color: #6c757d;
+            transform: scale(1.05);
+        }
+
+        /* Card */
+        .card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+        }
+
+        .card-header {
+            background-color: #3a3a3a;
+            color: #ffffff;
+            font-weight: bold;
+            text-align: center;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        /* Table */
+        .table-dark {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: #444444;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Footer */
+        .custom-footer {
+            background-color: #333333;
+            color: #ffffff;
+        }
+    </style>
 </head>
 
-<body class="bg- text-white">
+<body style = "background: linear-gradient(360deg, #1e1e1e, #403b39) ;" class="text-white">
 
     <!-- Header -->
-    <header th:replace="~{layout/plantilla :: header}"></header>
+    <header th:replace="~{layout/plantilla :: header}" class="w-100 text-white py-4 text-center">
+        <h2>Lista de Auditorías</h2>
+    </header>
 
-    <!-- Contenedor principal con barra lateral -->
-    <div class="container-fluid">
+    <!-- Contenedor principal -->
+    <div style = "background: linear-gradient(360deg, #1e1e1e, #403b39) ;" class="container-fluid">
         <div class="row">
 
             <!-- Barra lateral -->
-            <div class="col-md-3 bg-dark-custom p-0">
+            <div style = "background: linear-gradient(360deg, #1e1e1e, #403b39)"     class="col-md-3 bg-dark-custom p-4 sidebar">
                 <div th:replace="~{layout/plantilla :: barra-lateral}"></div>
             </div>
 
             <!-- Contenido principal -->
             <div class="col-md-9">
-                <div class="container mt-4">
-                    <h3 class="text-light mb-4 text-center">Registros de Auditoría</h3>
+                <div class="container mt-4 p-4 rounded shadow-lg" style="background-color: #2a2a2a;">
 
-                    <!-- Tabla de auditorías -->
-                    <div class="card bg-dark text-white shadow-lg border-0">
-                        <div class="card-body">
-                            <table class="table table-dark table-striped">
-                                <thead>
+                    <!-- Título -->
+                    <div class="text-center mb-4">
+                        <h3 class="text-light">Registros de Auditoría</h3>
+                        <hr style="border-top: 2px solid #6c757d; width: 60%; margin: 0 auto;" />
+                    </div>
+
+                    <!-- Tabla de Auditoría -->
+                    <div class="card bg-dark text-white shadow-lg">
+                        <div class="card-header">
+                            Lista de Auditorías
+                        </div>
+                        <div class="card-body p-0">
+                            <table class="table table-dark table-hover mb-0">
+                                <thead class="text-center">
                                     <tr>
                                         <th>ID</th>
                                         <th>Tabla Afectada</th>
@@ -39,10 +106,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr th:if="${#lists.isEmpty(auditoria)}">
-                                        <td colspan="5" class="text-center">No hay registros de auditoría.</td>
+                                    <tr th:if="${#lists.isEmpty(auditoria)}" class="text-center">
+                                        <td colspan="5">No hay registros de auditoría.</td>
                                     </tr>
-                                    <tr th:each="registro : ${auditoria}">
+                                    <tr th:each="registro : ${auditoria}" class="text-center"
+                                        style="transition: all 0.3s ease;"
+                                        onmouseover="this.style.backgroundColor = '#444444';
+                                                    this.style.boxShadow = '0 0 15px 4px rgba(255, 255, 255, 0.3)';
+                                                    this.style.transform = 'scale(1.02)';"
+                                        onmouseout="this.style.backgroundColor = '';
+                                                    this.style.boxShadow = 'none';
+                                                    this.style.transform = 'scale(1)';">
                                         <td th:text="${registro.id}"></td>
                                         <td th:text="${registro.tablaAfectada}"></td>
                                         <td th:text="${registro.accion}"></td>
@@ -59,11 +133,13 @@
 
                 </div>
             </div>
+
         </div>
     </div>
 
     <!-- Footer -->
-    <footer th:replace="~{layout/plantilla :: footer}"></footer>
+    <footer th:replace="~{layout/plantilla :: footer}" class="w-100 py-3 text-center custom-footer"></footer>
 
 </body>
+
 </html>

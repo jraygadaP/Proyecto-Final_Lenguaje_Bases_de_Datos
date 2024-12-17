@@ -1,47 +1,218 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Lista de Promociones</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
-</head>
-<body class="bg-dark text-white">
-    <header th:replace="~{layout/plantilla :: header}" class="w-100 bg-primary text-white py-4 text-center">
-        <h2>Lista de Promociones</h2>
-    </header>
-    <section class="py-5">
-        <div class="container">
-            <div class="text-center mb-4">
-                <h3>Promociones Activas</h3>
-                <a href="/promociones/nueva" class="btn btn-success">Nueva Promoción</a>
-            </div>
-            <table class="table table-dark table-striped">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Producto</th>
-                        <th>Promoción</th>
-                        <th>Duración</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="promocion : ${promociones}">
-                        <td th:text="${promocion.idPromociones}"></td>
-                        <td th:text="${promocion.idProducto}"></td>
-                        <td th:text="${promocion.promocion}"></td>
-                        <td th:text="${promocion.duracion}"></td>
-                        <td>
-                            <a th:href="@{'/promociones/' + ${promocion.idPromociones}}" class="btn btn-outline-primary btn-sm">Ver</a>
-                            <a th:href="@{'/promociones/editar/' + ${promocion.idPromociones}}" class="btn btn-outline-warning btn-sm">Editar</a>
-                            <a th:href="@{'/promociones/eliminar/' + ${promocion.idPromociones}}" class="btn btn-outline-danger btn-sm">Eliminar</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-    <footer th:replace="~{layout/plantilla :: footer}" class="w-100 bg-primary text-white py-3 text-center"/>
-</body>
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Lista de Productos</title>
+        <meta charset="UTF-8" />
+        <style>
+            /* General */
+            body {
+                background-color: #453c37;
+            }
+
+            /* Header */
+            header h2 {
+                font-size: 2rem;
+                font-weight: bold;
+                letter-spacing: 1px;
+                border-bottom: 2px solid #ffffff;
+                display: inline-block;
+                padding-bottom: 5px;
+            }
+
+            /* Sidebar */
+            .sidebar {
+                background-color: #453c37;
+                color: white;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+                padding: 20px;
+            }
+
+            .sidebar .nav-link {
+                border-radius: 5px;
+                transition: all 0.3s ease;
+            }
+
+            .sidebar .nav-link:hover {
+                background-color: #6c757d;
+                transform: scale(1.05);
+            }
+
+            /* Card */
+            .card {
+                border: none;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+                border-radius: 10px;
+            }
+
+            .card-header {
+                background-color: #453c37;
+                color: #453c37;
+                font-size: 1.2rem;
+                font-weight: bold;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                text-align: center;
+            }
+
+            /* Table */
+            .table-dark {
+                border-radius: 10px;
+                overflow: hidden;
+            }
+
+            .table-hover tbody tr:hover {
+                background-color: #444444;
+                transition: background-color 0.3s ease;
+            }
+
+            /* Buttons */
+            .btn {
+
+            }
+
+            .btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+            }
+
+            /* Fondo de Contraste para el Contenedor */
+            .p-4.rounded.shadow-lg {
+                background-color: #2a2a2a; /* Gris más claro que el fondo principal */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+                border-radius: 10px;
+            }
+
+            /* Encabezado de la Tabla */
+            .card-header {
+                background-color: #3a3a3a;
+                color: #ffffff;
+                font-weight: bold;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+            }
+
+            .testing
+
+            {
+                background-color: #453c37;
+            }
+
+            .custom-footer {
+                background-color: #333333; /* Color deseado */
+                color: #ffffff; /* Color del texto */
+            }
+
+        </style>
+    </head>
+    <body style = "background: linear-gradient(360deg, #1e1e1e, #403b39) ;" class="text-white">
+
+        <!-- Header -->
+        <header th:replace="~{layout/plantilla :: header}" class="w-100 bg-primary text-white py-4 text-center">
+            <h2>Lista de Productos</h2>
+        </header>
+
+        <!-- Contenedor principal -->
+        <section class="py-5">
+            <div class="container-fluid">
+                <div class="row">
+
+
+                    <!-- Barra Lateral -->
+                    <div class="col-md-3 sidebar">
+                        <div th:replace="~{layout/plantilla :: barra-lateral}"></div>
+                    </div>
+                    <div style="background-color: #2a2a2a;" class="col-md-8 mx-auto p-4 rounded shadow-lg">
+
+                        <!-- Contenedor con Fondo de Contraste -->
+                        <div class="p-4 rounded shadow-lg" style="background-color: #2a2a2a; ">
+                            <!-- Título de la Sección -->
+                            <div class="text-center mb-4" >
+                                <h3 class="text-light ">Catálogo de Categorias</h3>
+                                <hr style="border-top: 2px solid #6c757d; width: 60%; margin: 0 auto;"/>
+                            </div>
+
+                            <!-- Botones de Acción -->
+                            <!-- Botones de Acción -->
+                            <div class="d-flex justify-content-between mb-4">
+                                <a th:href="@{/promociones/nueva}" 
+                                   style="background-color: #032321;
+                                   color: #ffffff;
+                                   border-radius: 10px;
+                                   transition: all 0.3s ease;
+                                   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+                                   text-decoration: none;" 
+                                   onmouseover="this.style.backgroundColor = '#054c45';
+                                           this.style.boxShadow = '0 0 15px 4px rgba(3, 255, 180, 0.7)';
+                                           this.style.transform = 'translateY(-3px)';"
+                                   onmouseout="this.style.backgroundColor = '#032321';
+                                           this.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.5)';
+                                           this.style.transform = 'translateY(0)';"
+                                   class="btn px-4 py-2 shadow-lg">
+                                    Añadir una nueva Promocion
+                                </a>
+                            </div>
+
+
+
+                            <!-- Tarjeta y Tabla -->
+                            <div class=" card bg-dark text-white">
+                                <div class="card-header text-center">
+                                    Lista de Promociones
+                                </div>
+                                <!-- Tabla de Categorías -->
+                                <div class="card bg-dark text-white shadow-lg">
+
+                                    <div class="card-body p-0">
+                                        <table class="table table-dark table-hover mb-0">
+                                            <thead class="text-center">
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Producto</th>
+                                                    <th>Promoción</th>
+                                                    <th>Duración</th>
+                                                    <th>Acciones</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr th:each="promocion : ${promociones}">
+                                                    <td th:text="${promocion.idPromociones}"></td>
+                                                    <td th:text="${promocion.idProducto}"></td>
+                                                    <td th:text="${promocion.promocion}"></td>
+                                                    <td th:text="${promocion.duracion}"></td>
+                                                    <td>
+                                                        <a th:href="@{'/promociones/' + ${promocion.idPromociones}}" style="background-color: #afa39b; color: #000000;" 
+                                                   onmouseover="this.style.backgroundColor = '#cfc7c2';"
+                                                   onmouseout="this.style.backgroundColor = '#afa39b';"
+                                                   class="btn btn-sm mx-1">Ver</a>
+                                                        <a th:href="@{'/promociones/editar/' + ${promocion.idPromociones}}" style="background-color: #afa39b; color: #000000;" 
+                                                   onmouseover="this.style.backgroundColor = '#cfc7c2';"
+                                                   onmouseout="this.style.backgroundColor = '#afa39b';"
+                                                   class="btn btn-sm mx-1">Editar</a>
+                                                        <a th:href="@{'/promociones/eliminar/' + ${promocion.idPromociones}}" style="background-color: #4a0000; color: #ffffff;" 
+                                                   onmouseover="this.style.backgroundColor = '#600000';"
+                                                   onmouseout="this.style.backgroundColor = '#4a0000';"
+                                                   class="btn btn-sm mx-1">Eliminar</a>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> <!-- Fin de Row -->
+            </div> <!-- Fin de Container -->
+        </section>
+
+        <!-- Footer -->
+        <footer th:replace="~{layout/plantilla :: footer}"  style ="border-radius: 10px; transition: all 1s ease;"
+                class="w-100 py-3 text-center custom-footer"></footer>
+
+    </body>
 </html>

@@ -3,6 +3,7 @@ package com.DistritoBelleza.Repository;
 import com.DistritoBelleza.Entity.Cita;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
@@ -75,18 +76,27 @@ public class CitaRepository {
     }
 
     public void insertCita(Long idUsuario, String rutaImagen, String fecha, String hora, String descripcion, Boolean activo) {
-        LocalDateTime dateTime = LocalDateTime.parse(fecha + "T" + hora); // Combina fecha y hora
+    try {
+        // Combinar fecha y hora y convertir al formato correcto
+        String fechaHora = fecha + " " + hora; // Asegurarse del formato "yyyy-MM-dd HH:mm:ss"
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime dateTime = LocalDateTime.parse(fechaHora, formatter);
         Timestamp timestamp = Timestamp.valueOf(dateTime);
+
+        // Ejecutar el procedimiento almacenado
         insertCitaCall.execute(Map.of(
                 "p_id_usuario", idUsuario,
                 "p_ruta_imagen", rutaImagen,
                 "p_fecha", timestamp,
-                "p_hora", timestamp,
+                "p_hora", hora, // Mantener la hora como string si es necesario
                 "p_descripcion", descripcion,
                 "p_activo", activo
         ));
-
+    } catch (Exception e) {
+        throw new RuntimeException("Error al insertar la cita: " + e.getMessage(), e);
     }
+}
+
 
     public void updateCita(Long idCita, Long idUsuario, String rutaImagen, String fecha, String hora, String descripcion, Boolean activo) {
         updateCitaCall.execute(Map.of(

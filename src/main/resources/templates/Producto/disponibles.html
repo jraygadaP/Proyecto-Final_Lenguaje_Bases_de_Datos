@@ -18,13 +18,13 @@
     </style>
 </head>
 
-<body class="bg-dark text-white">
+<body style="background-color: #2a2a2a;" class="bg-dark text-white">
 
     <!-- Header -->
     <header th:replace="~{layout/plantilla :: header}"></header>
 
     <!-- Contenedor principal con barra lateral -->
-    <div class="container-fluid">
+    <div style="background-color: #2a2a2a;"class="container-fluid">
         <div class="row">
 
             <!-- Barra lateral -->
@@ -48,7 +48,13 @@
                                         <th>Existencia</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody style="transition: all 0.3s ease;"
+                                                onmouseover="this.style.backgroundColor = '#444444';
+                                                        this.style.boxShadow = '0 0 15px 4px rgba(255, 255, 255, 0.3)';
+                                                        this.style.transform = 'scale(1.02)';"
+                                                onmouseout="this.style.backgroundColor = '';
+                                                        this.style.boxShadow = 'none';
+                                                        this.style.transform = 'scale(1)';">
                                     <tr th:if="${#lists.isEmpty(productos)}">
                                         <td colspan="3" class="text-center">No hay productos disponibles.</td>
                                     </tr>
@@ -87,7 +93,7 @@
     </div>
 
     <!-- Footer -->
-    <footer th:replace="~{layout/plantilla :: footer}"></footer>
+    <footer style="background-color: #2a2a2a; " th:replace="~{layout/plantilla :: footer}"></footer>
 
 </body>
 </html>
