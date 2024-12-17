@@ -77,8 +77,11 @@ public class CitaRepository {
 
     public void insertCita(Long idUsuario, String rutaImagen, String fecha, String hora, String descripcion, Boolean activo) {
     try {
-        // Combinar fecha y hora y convertir al formato correcto
-        String fechaHora = fecha + " " + hora; // Asegurarse del formato "yyyy-MM-dd HH:mm:ss"
+        // Agregar segundos si no están presentes
+        String horaCompleta = hora.length() == 5 ? hora + ":00" : hora; // Asegura el formato HH:mm:ss
+        String fechaHora = fecha + " " + horaCompleta;
+
+        // Convertir a LocalDateTime
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime dateTime = LocalDateTime.parse(fechaHora, formatter);
         Timestamp timestamp = Timestamp.valueOf(dateTime);
@@ -88,7 +91,7 @@ public class CitaRepository {
                 "p_id_usuario", idUsuario,
                 "p_ruta_imagen", rutaImagen,
                 "p_fecha", timestamp,
-                "p_hora", hora, // Mantener la hora como string si es necesario
+                "p_hora", horaCompleta,
                 "p_descripcion", descripcion,
                 "p_activo", activo
         ));
@@ -98,17 +101,29 @@ public class CitaRepository {
 }
 
 
+
     public void updateCita(Long idCita, Long idUsuario, String rutaImagen, String fecha, String hora, String descripcion, Boolean activo) {
+    try {
+        // Combinar fecha y hora y convertir a Timestamp
+        String fechaHora = fecha + "T" + hora; // Formato ISO-8601
+        LocalDateTime dateTime = LocalDateTime.parse(fechaHora);
+        Timestamp timestamp = Timestamp.valueOf(dateTime);
+
+        // Ejecutar el procedimiento almacenado
         updateCitaCall.execute(Map.of(
                 "p_id_cita", idCita,
                 "p_id_usuario", idUsuario,
                 "p_ruta_imagen", rutaImagen,
-                "p_fecha", fecha,
-                "p_hora", hora,
+                "p_fecha", timestamp,
+                "p_hora", hora, // Si la hora sola se requiere como String
                 "p_descripcion", descripcion,
                 "p_activo", activo
         ));
+    } catch (Exception e) {
+        throw new RuntimeException("Error al actualizar la cita: " + e.getMessage(), e);
     }
+}
+
 
     public void deleteCita(Long idCita) {
         deleteCitaCall.execute(Map.of("p_id_cita", idCita));

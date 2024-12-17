@@ -71,7 +71,20 @@ public String insertCita(
     }
 
     @PostMapping("/actualizar/{id}")
-    public String updateCita(@PathVariable Long id, @ModelAttribute Cita cita) {
+public String updateCita(@PathVariable Long id,
+                         @RequestParam("fecha") String fecha,
+                         @RequestParam("hora") String hora,
+                         @ModelAttribute Cita cita) {
+    try {
+        // Formatear fecha y hora
+        String fechaHora = fecha + "T" + hora; // Combinar fecha y hora
+        LocalDateTime dateTime = LocalDateTime.parse(fechaHora);
+
+        // Guardar valores en la entidad
+        cita.setFecha(dateTime.toLocalDate().toString());
+        cita.setHora(dateTime.toLocalTime().toString());
+
+        // Actualizar usando el servicio
         citaService.updateCita(
                 id,
                 cita.getIdUsuario(),
@@ -82,7 +95,11 @@ public String insertCita(
                 cita.getActivo()
         );
         return "redirect:/citas";
+    } catch (Exception e) {
+        e.printStackTrace();
+        return "redirect:/citas/editar/" + id + "?error=true";
     }
+}
 
     @GetMapping("/eliminar/{id}")
     public String deleteCita(@PathVariable Long id) {
