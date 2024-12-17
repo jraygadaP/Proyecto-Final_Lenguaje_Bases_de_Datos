@@ -1,6 +1,7 @@
 package com.DistritoBelleza.Repository;
 
 import com.DistritoBelleza.Entity.Producto;
+import java.sql.Types;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Map;
+import org.springframework.jdbc.core.SqlOutParameter;
 
 @Repository
 public class ProductoRepository {
@@ -22,6 +24,7 @@ public class ProductoRepository {
     private SimpleJdbcCall deleteProductoCall;
     private SimpleJdbcCall getInventarioDisponibleCall;
     private SimpleJdbcCall getPromocionesInactivasCall;
+    private SimpleJdbcCall getProductoCaroCall;
 
     @PostConstruct
     public void init() {
@@ -66,16 +69,12 @@ getInventarioDisponibleCall = new SimpleJdbcCall(jdbcTemplate)
         return producto;
     });
 
-getPromocionesInactivasCall = new SimpleJdbcCall(jdbcTemplate)
-        .withProcedureName("get_promociones_inactivas")
-        .returningResultSet("p_cursor", (rs, rowNum) -> {
-            Producto producto = new Producto();
-            producto.setIdProducto(rs.getLong("id_producto"));
-            producto.setDescripcion(rs.getString("descripcion"));
-            producto.setDuracion(rs.getInt("duracion"));
-            return producto;
-        });
-
+getProductoCaroCall = new SimpleJdbcCall(jdbcTemplate)
+            .withCatalogName("PAQUETE_FUNCIONES") // Nombre del paquete
+            .withFunctionName("PRODUCTO_CARO")   // Nombre de la función
+            .declareParameters(
+                new SqlOutParameter("return", Types.VARCHAR) // Parámetro de retorno
+            );
 }
 
     // Obtener todos los productos
@@ -128,5 +127,12 @@ getPromocionesInactivasCall = new SimpleJdbcCall(jdbcTemplate)
     Map<String, Object> result = getPromocionesInactivasCall.execute();
     return (List<Producto>) result.get("p_cursor");
 }
+    
+   public String getProductoCaro() {
+    // Ejecutar la función y obtener el resultado
+    Map<String, Object> result = getProductoCaroCall.execute();
+    return (String) result.get("return");
+}
+    
 }
 

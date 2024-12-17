@@ -117,4 +117,11 @@ public String mostrarDetalleProducto(@PathVariable Long id, Model model) {
     return "producto/detalle";
 }
 
+@GetMapping("/producto-caro")
+public String mostrarProductoCaro(Model model) {
+    String productoCaro = productoService.getProductoCaro();
+    model.addAttribute("productoCaro", productoCaro);
+    return "producto/producto-caro"; // Vista para mostrar el producto caro
+}
+
 }

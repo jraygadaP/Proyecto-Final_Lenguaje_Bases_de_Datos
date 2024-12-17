@@ -1,20 +1,132 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:sec="http://www.thymeleafe.org/thymeleaf-extras-springsecurity6"
-      xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{layout/plantilla :: head}">
-        <title>Distrito Bellezas</title>
-        <meta charset="UTF-8"/>   
-    </head>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-    <body class="bg-dark">
+<head th:replace="~{layout/plantilla :: head}">
+    <title>Distrito Belleza</title>
+    <meta charset="UTF-8" />
+    <style>
+        /* General */
+        body {
+            background: linear-gradient(360deg, #1e1e1e, #403b39);
+            color: white;
+        }
 
-        <header th:replace="~{layout/plantilla :: header}"/>
-        <footer th:replace="~{layout/plantilla :: footer}"/> 
+        /* Sidebar */
+        .bg-dark-custom {
+            background-color: #453c37;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
 
-    </body>
+        .sidebar .nav-link {
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar .nav-link:hover {
+            background-color: #6c757d;
+            transform: scale(1.05);
+        }
+
+        /* Card */
+        .card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+        }
+
+        .card-header {
+            background-color: #3a3a3a;
+            color: #ffffff;
+            font-weight: bold;
+            text-align: center;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        /* Table */
+        .table-dark {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: #444444;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Footer */
+        .custom-footer {
+            background-color: #333333;
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body style = "background: linear-gradient(360deg, #1e1e1e, #403b39) ;" class="text-white">
+
+    <!-- Header -->
+    <header th:replace="~{layout/plantilla :: header}" class="w-100 text-white py-4 text-center">
+        <h2>Administración de Base de Datos</h2>
+    </header>
+
+    <!-- Contenedor principal -->
+    <div style = "background: linear-gradient(360deg, #1e1e1e, #403b39) ;" class="container-fluid">
+        <div class="row">
+
+            <!-- Barra lateral -->
+            <div style = "background: linear-gradient(360deg, #1e1e1e, #403b39)"     class="col-md-3 bg-dark-custom p-4 sidebar">
+                <div th:replace="~{layout/plantilla :: barra-lateral}"></div>
+            </div>
+
+            <!-- Contenido principal -->
+            <div class="col-md-9">
+
+                 <!-- Sección principal -->
+    <div class="mb-4">
+        <h3 class="text-center">Gestión de Base de Datos</h3>
+        <p class="text-center">
+            Aquí puedes administrar los registros de la base de datos y visualizar estadísticas relevantes.
+        </p>
+    </div>
+
+    <!-- Tarjetas de Métricas -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card text-center bg-dark text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Registros Totales</h5>
+                    <p class="display-4">35</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center bg-dark text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Usuarios Activos</h5>
+                    <p class="display-4">3</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center bg-dark text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Última Actualización</h5>
+                    <p class="display-4">2024-12-17</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <img src="big-data-7216839_1280.png" alt=""/>
+    
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer th:replace="~{layout/plantilla :: footer}" class="w-100 py-3 text-center custom-footer"></footer>
+
+</body>
+
 </html>

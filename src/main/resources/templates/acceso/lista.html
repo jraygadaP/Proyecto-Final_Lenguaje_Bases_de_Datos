@@ -1,12 +1,136 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Acceso - Distrito Belleza</title>
-</head>
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Lista de Productos</title>
+        <meta charset="UTF-8" />
+        <style>
+            /* General */
+            body {
+                background-color: #453c37;
+            }
 
-<body>
-    <h1>Acceso a la búsqueda de productos</h1>
+            /* Header */
+            header h2 {
+                font-size: 2rem;
+                font-weight: bold;
+                letter-spacing: 1px;
+                border-bottom: 2px solid #ffffff;
+                display: inline-block;
+                padding-bottom: 5px;
+            }
+
+            /* Sidebar */
+            .sidebar {
+                background-color: #453c37;
+                color: white;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+                padding: 20px;
+            }
+
+            .sidebar .nav-link {
+                border-radius: 5px;
+                transition: all 0.3s ease;
+            }
+
+            .sidebar .nav-link:hover {
+                background-color: #6c757d;
+                transform: scale(1.05);
+            }
+
+            /* Card */
+            .card {
+                border: none;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+                border-radius: 10px;
+            }
+
+            .card-header {
+                background-color: #453c37;
+                color: #453c37;
+                font-size: 1.2rem;
+                font-weight: bold;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                text-align: center;
+            }
+
+            /* Table */
+            .table-dark {
+                border-radius: 10px;
+                overflow: hidden;
+            }
+
+            .table-hover tbody tr:hover {
+                background-color: #444444;
+                transition: background-color 0.3s ease;
+            }
+
+            /* Buttons */
+            .btn {
+
+            }
+
+            .btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+            }
+
+            /* Fondo de Contraste para el Contenedor */
+            .p-4.rounded.shadow-lg {
+                background-color: #2a2a2a; /* Gris más claro que el fondo principal */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+                border-radius: 10px;
+            }
+
+            /* Encabezado de la Tabla */
+            .card-header {
+                background-color: #3a3a3a;
+                color: #ffffff;
+                font-weight: bold;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+            }
+
+            .testing
+
+            {
+                background-color: #453c37;
+            }
+
+            .custom-footer {
+                background-color: #333333; /* Color deseado */
+                color: #ffffff; /* Color del texto */
+            }
+
+        </style>
+    </head>
+    <body style = "background: linear-gradient(360deg, #1e1e1e, #403b39) ;" class="text-white">
+
+        <!-- Header -->
+        <header th:replace="~{layout/plantilla :: header}" class="w-100 bg-primary text-white py-4 text-center">
+            <h2>Lista de Productos</h2>
+        </header>
+
+        <!-- Contenedor principal -->
+        <section class="py-5">
+            <div class="container-fluid">
+                <div class="row">
+
+
+                    <!-- Barra Lateral -->
+                    <div class="col-md-3 sidebar">
+                        <div th:replace="~{layout/plantilla :: barra-lateral}"></div>
+                    </div>
+                    <div style="background-color: #2a2a2a;" class="col-md-8 mx-auto p-4 rounded shadow-lg">
+
+                        <!-- Contenedor con Fondo de Contraste -->
+                        <div class="p-4 rounded shadow-lg" style="background-color: #2a2a2a; ">
+                            <!-- Título de la Sección -->
+                            
+
+                            <h1>Acceso a la búsqueda de productos</h1>
 
     <form th:action="@{/acceso}" method="get">
         <input class="form-control" type="search" name="query" placeholder="Buscar productos...">
@@ -18,8 +142,21 @@
             <li th:text="${producto}"></li>
         </ul>
     </main>
-</body>
+
+                        </div>
+                    </div>
+
+                </div> <!-- Fin de Row -->
+            </div> <!-- Fin de Container -->
+        </section>
+
+        <!-- Footer -->
+        <footer th:replace="~{layout/plantilla :: footer}"  style ="border-radius: 10px; transition: all 1s ease;"
+                class="w-100 py-3 text-center custom-footer"></footer>
+
+    </body>
 </html>
+
 
 
 

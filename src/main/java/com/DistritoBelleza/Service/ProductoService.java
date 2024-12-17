@@ -44,5 +44,9 @@ public class ProductoService {
         public List<String> buscarProductos(String query) {
         return acceso.buscarProductos(query);
     }
+        
+        public String getProductoCaro() {
+    return productoRepository.getProductoCaro();
+}
 
 }
