@@ -203,21 +203,7 @@
                                                 <td th:text="${producto.precio}"></td>
                                                 <td th:text="${producto.existencia}"></td>
                                                 <td>
-                                                    <!-- Botón Ver -->
-                                                    <a th:href="@{'/productos/' + ${producto.idProducto}}" 
-                                                       style="background-color: #afa39b;
-                                                       color: #000000;
-                                                       border-radius: 10px;
-                                                       transition: all 0.3s ease;
-                                                       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-                                                       text-decoration: none;"
-                                                       onmouseover="this.style.backgroundColor = '#cfc7c2';
-                                                               this.style.boxShadow = '0 0 15px 4px rgba(175, 163, 155, 0.7)';
-                                                               this.style.transform = 'translateY(-3px)';"
-                                                       onmouseout="this.style.backgroundColor = '#afa39b';
-                                                               this.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.3)';
-                                                               this.style.transform = 'translateY(0)';"
-                                                       class="btn btn-sm mx-1">Ver</a>
+                                                    
 
                                                     <!-- Botón Editar -->
                                                     <a th:href="@{'/productos/editar/' + ${producto.idProducto}}" 

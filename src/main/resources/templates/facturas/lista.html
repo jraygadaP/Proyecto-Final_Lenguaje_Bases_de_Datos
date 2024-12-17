@@ -189,10 +189,6 @@
                         <td th:text="${factura.fechaEmision}"></td>
                         <td th:text="${factura.detalleServicio}"></td>
                         <td>
-                            <a th:href="@{'/facturas/' + ${factura.numeroFactura}}" style="background-color: #afa39b; color: #000000;" 
-                                                   onmouseover="this.style.backgroundColor = '#cfc7c2';"
-                                                   onmouseout="this.style.backgroundColor = '#afa39b';"
-                                                   class="btn btn-sm mx-1">Ver</a>
                             <a th:href="@{'/facturas/editar/' + ${factura.numeroFactura}}" style="background-color: #afa39b; color: #000000;" 
                                                    onmouseover="this.style.backgroundColor = '#cfc7c2';"
                                                    onmouseout="this.style.backgroundColor = '#afa39b';"

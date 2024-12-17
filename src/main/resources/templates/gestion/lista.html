@@ -178,7 +178,6 @@
                                                     <td th:text="${proveedor.idProveedor}"></td>
                                                     <td th:text="${proveedor.nombre}"></td>
                                                     <td>
-                                                        <a th:href="@{'/gestiones-proveedores/' + ${proveedor.idProveedor}}" class="btn btn-outline-primary btn-sm">Ver</a>
                                                         <a th:href="@{'/gestiones-proveedores/editar/' + ${proveedor.idProveedor}}" class="btn btn-outline-warning btn-sm">Editar</a>
                                                         <a th:href="@{'/gestiones-proveedores/eliminar/' + ${proveedor.idProveedor}}" class="btn btn-outline-danger btn-sm">Eliminar</a>
                                                     </td>

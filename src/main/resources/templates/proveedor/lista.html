@@ -178,10 +178,7 @@
                                                     <td th:text="${proveedor.idProveedor}"></td>
                                                     <td th:text="${proveedor.nombre}"></td>
                                                     <td>
-                                                        <a th:href="@{'/gestiones-proveedores/' + ${proveedor.idProveedor}}" style="background-color: #afa39b; color: #000000;" 
-                                                   onmouseover="this.style.backgroundColor = '#cfc7c2';"
-                                                   onmouseout="this.style.backgroundColor = '#afa39b';"
-                                                   class="btn btn-sm mx-1">Ver</a>
+
                                                         <a th:href="@{'/gestiones-proveedores/editar/' + ${proveedor.idProveedor}}" style="background-color: #afa39b; color: #000000;" 
                                                    onmouseover="this.style.backgroundColor = '#cfc7c2';"
                                                    onmouseout="this.style.backgroundColor = '#afa39b';"

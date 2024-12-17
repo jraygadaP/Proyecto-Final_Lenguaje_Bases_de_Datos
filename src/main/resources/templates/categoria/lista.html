@@ -185,12 +185,7 @@
                                             <td th:text="${categoria.rutaImagen}"></td>
                                             <td th:text="${categoria.activo} ? 'Sí' : 'No'"></td>
                                             <td>
-                                                <!-- Botones de Acción -->
-                                                <a th:href="@{'/categorias/' + ${categoria.idCategoria}}" 
-                                                   style="background-color: #afa39b; color: #000000;" 
-                                                   onmouseover="this.style.backgroundColor = '#cfc7c2';"
-                                                   onmouseout="this.style.backgroundColor = '#afa39b';"
-                                                   class="btn btn-sm mx-1">Ver</a>
+                                          
 
                                                 <a th:href="@{'/categorias/editar/' + ${categoria.idCategoria}}" 
                                                    style="background-color: #afa39b; color: #000000;" 

@@ -205,10 +205,7 @@
                                                 <td th:text="${cita.descripcion}"></td>
                                                 <td th:text="${cita.activo ? 'Sí' : 'No'}"></td>
                                                 <td>
-                                                    <a th:href="@{'/citas/' + ${cita.idCita}}" style="background-color: #afa39b; color: #000000;" 
-                                                   onmouseover="this.style.backgroundColor = '#cfc7c2';"
-                                                   onmouseout="this.style.backgroundColor = '#afa39b';"
-                                                   class="btn btn-sm mx-1">Ver</a>
+                                                    
                                                     <a th:href="@{'/citas/editar/' + ${cita.idCita}}" style="background-color: #afa39b; color: #000000;" 
                                                    onmouseover="this.style.backgroundColor = '#cfc7c2';"
                                                    onmouseout="this.style.backgroundColor = '#afa39b';"

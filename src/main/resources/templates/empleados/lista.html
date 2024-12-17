@@ -173,7 +173,7 @@
                                                         <p class="card-text">Puesto: <span th:text="${empleado.puesto}"></span></p>
                                                     </div>
                                                     <div class="card-footer d-flex justify-content-around">
-                                                        <a th:href="@{'/empleados/' + ${empleado.idEmpleado}}" class="btn btn-outline-primary btn-sm">Ver</a>
+
                                                         <a th:href="@{'/empleados/editar/' + ${empleado.idEmpleado}}" class="btn btn-outline-warning btn-sm">Editar</a>
                                                         <a th:href="@{'/empleados/eliminar/' + ${empleado.idEmpleado}}" class="btn btn-outline-danger btn-sm">Eliminar</a>
                                                     </div>
