@@ -1,6 +1,7 @@
 package com.DistritoBelleza.Service;
 
 import com.DistritoBelleza.Entity.Producto;
+import com.DistritoBelleza.Repository.AccesoRepository;
 import com.DistritoBelleza.Repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,9 @@ public class ProductoService {
 
     @Autowired
     private ProductoRepository productoRepository;
+    
+    @Autowired
+    private AccesoRepository acceso;
 
     public List<Producto> getProductos() {
         return productoRepository.getProductos();
@@ -37,5 +41,8 @@ public class ProductoService {
     public List<Producto> getPromocionesInactivas() {
     return productoRepository.getPromocionesInactivas();
 }
+        public List<String> buscarProductos(String query) {
+        return acceso.buscarProductos(query);
+    }
 
 }
