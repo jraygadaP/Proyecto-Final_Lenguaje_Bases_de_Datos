@@ -5,84 +5,150 @@
 <head th:replace="~{layout/plantilla :: head}">
     <title>Detalles del Producto</title>
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
     <style>
-        /* Colores y estilos para el catálogo de entidades en tema oscuro */
-        .catalog-dark {
-            background-color: #2c2c2c;
-            color: #e0e0e0;
-            padding: 2rem;
+        body {
+            background-color: #453c37; /* Fondo general */
+            color: #ffffff;
+        }
+
+        .sidebar {
+            background-color: #453c37;
+            color: white;
+            padding: 20px;
             border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
-        .card-body {
-            background-color: #3a3a3a;
-            color: #e0e0e0;
-            border: none;
+
+        .container-content {
+            background-color: #262321;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            padding: 3rem 2rem; /* Más padding para espaciar el contenido */
         }
-        .card-title {
-            color: #d4d4d4;
+
+        hr {
+            border-top: 2px solid #6c757d;
         }
-        .card-footer {
-            background-color: #2c2c2c;
-        }
-        .text-muted {
-            color: #b0b0b0 !important;
-        }
-        /* Botones con colores neutros */
-        .btn-outline-primary {
+
+        .btn-custom {
+            background-color: #032321;
             color: #ffffff;
-            border-color: #6c757d;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            text-decoration: none;
         }
-        .btn-outline-primary:hover {
-            background-color: #6c757d;
-            border-color: #6c757d;
+
+        .btn-custom:hover {
+            background-color: #054c45;
+            box-shadow: 0 0 15px 4px rgba(3, 255, 180, 0.7);
+            transform: translateY(-3px);
         }
-        .btn-outline-warning {
+
+        /* Ajuste del título */
+        .section-title {
+            margin-top: 1rem;
+            margin-bottom: 2rem;
             color: #ffffff;
-            border-color: #adb5bd;
+            font-size: 2rem;
+            font-weight: bold;
         }
-        .btn-outline-warning:hover {
-            background-color: #adb5bd;
-            border-color: #adb5bd;
-        }
-        .btn-outline-danger {
-            color: #ffffff;
-            border-color: #868e96;
-        }
-        .btn-outline-danger:hover {
-            background-color: #868e96;
-            border-color: #868e96;
+
+        /* Ajuste del contenido */
+        .product-info p {
+            margin-bottom: 1rem; /* Espaciado entre párrafos */
         }
     </style>
 </head>
 
-<body class="bg-dark text-white">
-    <header th:replace="~{layout/plantilla :: header}" class="w-100 bg-primary text-white py-4 text-center">
+<body style="background-color: #262321;" class="text-white">
+    <!-- Header -->
+    <header th:replace="~{layout/plantilla :: header}" 
+            style = "background-color: #262321;" class="w-100 bg-primary text-white py-4 text-center">
         <h2>Detalles del Producto</h2>
     </header>
 
-    <section class="py-5">
-        
-        <!-- Barra lateral -->
-            <div class="col-md-3 bg-dark p-0">
+<!-- Contenido Principal -->
+<section style="background-color: #262321;" class="py-5">
+    <div class="container-fluid mb-4">
+        <div class="row">
+            <!-- Barra Lateral -->
+            <div class="col-md-3 sidebar" style="background-color: #262321;">
                 <div th:replace="~{layout/plantilla :: barra-lateral}"></div>
             </div>
-        <div class="container">
-            <div class="card bg-dark text-white shadow-lg">
-                <div class="card-body text-center">
-                    <h3 class="card-title text-light" th:text="${producto.descripcion}">Nombre del Producto</h3>
-                    <p class="card-text">Detalle: <span th:text="${producto.detalle}"></span></p>
-                    <p class="card-text">Precio: <span th:text="${producto.precio}"></span></p>
-                    <p class="card-text">Existencia: <span th:text="${producto.existencia}"></span></p>
-                    <p class="card-text">Categoría ID: <span th:text="${producto.idCategoria}"></span></p>
-                    <p class="card-text">Material ID: <span th:text="${producto.idMaterial}"></span></p>
-                    <p class="card-text">Activo: <span th:text="${producto.activo} ? 'Sí' : 'No'"></span></p>
-                    <a th:href="@{/productos}" class="btn btn-outline-light mt-4">Volver a la Lista</a>
+
+            <!-- Contenedor Principal -->
+            <div style="background-color: #2a2a2a; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);" 
+                 class="col-md-8 mx-auto container-content mb-5 py-4">
+                <!-- Título -->
+                <div class="text-center mb-4">
+                    <h3 class="text-light mb-3" th:text="${producto.descripcion}">Nombre del Producto</h3>
+                    <hr style="border-top: 2px solid #6c757d; width: 60%; margin: 0 auto;" />
+                </div>
+
+                <!-- Tabla con Información del Producto -->
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover text-center mb-4" 
+                           style="border-radius: 10px; overflow: hidden;">
+                        <tbody>
+                            <tr>
+                                <th style="background-color: #3a3a3a; width: 40%;">Detalle</th>
+                                <td style="background-color: #2e2e2e;" th:text="${producto.detalle}">Detalle del Producto</td>
+                            </tr>
+                            <tr>
+                                <th style="background-color: #3a3a3a;">Precio</th>
+                                <td style="background-color: #2e2e2e;" th:text="${producto.precio}">$0.00</td>
+                            </tr>
+                            <tr>
+                                <th style="background-color: #3a3a3a;">Existencia</th>
+                                <td style="background-color: #2e2e2e;" th:text="${producto.existencia}">0</td>
+                            </tr>
+                            <tr>
+                                <th style="background-color: #3a3a3a;">Categoría ID</th>
+                                <td style="background-color: #2e2e2e;" th:text="${producto.idCategoria}">0</td>
+                            </tr>
+                            <tr>
+                                <th style="background-color: #3a3a3a;">Material ID</th>
+                                <td style="background-color: #2e2e2e;" th:text="${producto.idMaterial}">0</td>
+                            </tr>
+                            <tr>
+                                <th style="background-color: #3a3a3a;">Activo</th>
+                                <td style="background-color: #2e2e2e;" th:text="${producto.activo} ? 'Sí' : 'No'">Sí</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Botón Volver -->
+                <div class="text-center mt-4">
+                    <a th:href="@{/productos}" 
+                       style="background-color: #032321;
+                              color: #ffffff;
+                              border-radius: 10px;
+                              transition: all 0.3s ease;
+                              box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+                              text-decoration: none;" 
+                       onmouseover="this.style.backgroundColor = '#054c45';
+                                    this.style.boxShadow = '0 0 15px 4px rgba(3, 255, 180, 0.7)';
+                                    this.style.transform = 'translateY(-3px)';"
+                       onmouseout="this.style.backgroundColor = '#032321';
+                                   this.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.5)';
+                                   this.style.transform = 'translateY(0)';"
+                       class="btn px-4 py-2 shadow-lg">
+                        Volver a la Lista
+                    </a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <footer th:replace="~{layout/plantilla :: footer}"/>
+
+    <!-- Footer -->
+    <footer th:replace="~{layout/plantilla :: footer}" 
+            class="w-100 py-3 text-center" 
+            style="background-color: #333333; color: #ffffff;">
+    </footer>
 </body>
 </html>
+

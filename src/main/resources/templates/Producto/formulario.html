@@ -9,8 +9,8 @@
     <style>
         /* Estilos consistentes con el tema oscuro */
         .card-body {
-            background-color: #3a3a3a;
-            color: #e0e0e0;
+            background-color: #453c37;
+            color: #453c37;
             border: none;
         }
         .btn-outline-primary {
@@ -25,19 +25,21 @@
             background-color: #adb5bd;
         }
         .form-control {
-            background-color: #3a3a3a;
+            background-color: #453c37;
             color: #e0e0e0;
         }
         .form-control:focus {
             border-color: #6c757d;
             box-shadow: 0 0 5px rgba(108, 117, 125, 0.5);
         }
+        
+        
     </style>
 </head>
-<body class="bg-dark text-white">
+<body class="text-white">
 
     <!-- Header -->
-    <header th:replace="~{layout/plantilla :: header}" class="w-100 bg-primary text-white py-4 text-center">
+    <header th:replace="~{layout/plantilla :: header}" class="w-100 bg-primar text-white py-4 text-center">
         <h2 th:text="${producto.idProducto != null} ? 'Editar Producto' : 'Nuevo Producto'"></h2>
     </header>
 
@@ -101,6 +103,6 @@
     </section>
 
     <!-- Footer -->
-    <footer th:replace="~{layout/plantilla :: footer}" class="w-100 bg-primary text-white py-3 text-center"></footer>
+    <footer th:replace="~{layout/plantilla :: footer}" style=" color: #ffffff;" class="w-100 bg-primary text-white py-3 text-center"></footer>
 </body>
 </html>

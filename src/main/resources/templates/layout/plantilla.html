@@ -1,10 +1,6 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:sec="http://www.thymeleafe.org/thymeleaf-extras-springsecurity6"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security6"
       xmlns:th="http://www.thymeleaf.org">
     <head th:fragment="head">
         <title>Distrito Belleza</title>
@@ -15,218 +11,179 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
         <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
         <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
- 
 
-    <style>
-        /* Centrar el menú desplegable */
-        .navbar-nav {
-            margin: 0 auto; /* Centra los elementos en la barra */
-        }
+        <style>
+            /* Fondo azul oscuro para el header */
+            .bg-blue-dark {
+                background-color: #1a1f36; /* Azul muy oscuro */
+            }
 
-        /* Título grande */
-        .page-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin: 20px 0;
-            color: white;
-        }
+            /* Título en cuadro gris oscuro */
+            .page-title {
+                background-color: #3a3a3a; /* Gris oscuro */
+                color: #ffffff; /* Texto blanco */
+                border-radius: 8px;
+                padding: 10px;
+                max-width: 600px;
+                margin: 0 auto; /* Centrado horizontal */
+            }
 
-        /* Efecto hover en los elementos del menú */
-        .dropdown-item {
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
-        }
+            /* Estilo de la barra de navegación */
+            .bg-dark-custom {
+                background-color: #2c2c2c; /* Gris oscuro personalizado */
+                color: white;
+            }
 
-        .dropdown-item:hover {
-            background-color: #f8f9fa;
-            color: #0056b3;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-        }
-        
-        .bg-dark-custom {
-            background-color: #2c2c2c; /* Oscuro personalizado */
-    color: white; /* Texto blanco */
-    
-    .bg-blue-dark {
-        background-color: #1a1f36; /* Azul muy oscuro */
-    }
+            /* Estilo de enlaces dentro de la barra lateral */
+            .barra-lateral .nav-link {
+                color: #ffffff;
+                transition: background-color 0.3s, color 0.3s;
+            }
+            .barra-lateral .nav-link:hover {
+                background-color: #6c757d;
+                color: #ffffff;
+                border-radius: 5px;
+            }
 
-    /* Cuadro gris oscuro del título */
-    .page-title {
-        background-color: #3a3a3a; /* Gris oscuro */
-        color: #ffffff; /* Texto blanco */
-        border-radius: 8px;
-        padding: 10px;
-    }
+            /* Efecto hover en los elementos de la barra lateral */
+            .nav-link {
+                color: #e0e0e0;
+                padding: 10px;
+                border-radius: 5px;
+                transition: all 0.3s ease;
+            }
 
-    /* Estilo de la barra de navegación */
-    .bg-dark-custom {
-        background-color: #2c2c2c; /* Oscuro personalizado */
-        color: white;
-    }
-}
-    </style>
+            .nav-link:hover {
+                background-color: #6c757d; /* Color de fondo al hacer hover */
+                color: #ffffff; /* Cambio del color del texto */
+                transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+                box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2); /* Sombra ligera */
+            }
+
+            .nav-link i {
+                transition: transform 0.3s ease; /* Transición del ícono */
+            }
+
+            .nav-link:hover i {
+                transform: rotate(10deg); /* Efecto ligero de rotación del ícono */
+            }
+
+        </style>
     </head>
 
-
-
-
-
-    <body>
-
+    <body >
         <!-- Header -->
-
-<header>
-    <!-- Título de la página con cuadro gris oscuro -->
-    <div class="bg-blue-dark py-4">
-        <div class="page-title text-center py-2 mx-auto" style="background-color: #3a3a3a; color: #ffffff; border-radius: 8px; max-width: 600px;">
-            <h2>Distrito Belleza</h2>
-        </div>
-    </div>
-
-    <!-- Barra de navegación -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark-custom">
-        <div class="container-fluid">
-            <!-- Botón para móvil -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Menú desplegable centrado -->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                </ul>
-
-                <!-- Botón de Auditorias fuera del menú desplegable -->
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-outline-light px-3" href="/auditoria">
-                            <i class="bi bi-clipboard-check"></i> Auditorías
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
-
-
-
-
-        <!-- 2 Sección para mostrar las tarjetas de los productos-->
-        <section th:fragment="tarjetas" class="bg-light">
-            <div class="row row-cols-4">
-                <div class="card" th:each="p : ${productos}">
-                    <figure>
-                        <img th:src="${p.rutaImagen}" height="200" alt="alt"/>
-                        <figcaption>
-                            ¢[[${p.precio}]] ([[${p.existencias}]])
-                        </figcaption>
-                    </figure>
-                    <div class="card-header">
-                        <h4>[[${p.descripcion}]]</h4>
-                    </div>
-                    <div class="card-body">
-                        <p>[[${p.detalle}]]</p>
-                    </div>
+        <header>
+            <!-- Fondo azul muy oscuro -->
+            <div class=" py-4" style ="background-color: #032321; border-radius: 10px; transition: all 0.6s ease;">
+                <!-- Título de la página en cuadro gris oscuro -->
+                <div style ="background-color: #afa39b; border-radius: 10px; transition: all 0.6s ease;" class="page-title text-center shadow-lg">
+                    <h2>Distrito Belleza</h2>
                 </div>
             </div>
-        </section>
 
-        <section th:fragment="consultas" class="bg-light">
-            <div class = "row row-cols-3 m-2">
+            <!-- Barra de navegación -->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark-custom">
+                <div class="container-fluid">
+                    <!-- Botón de navegación para móviles -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                <!--Barra de busqueda-->
 
-
-                <div>
-                    <form method="get" th:action = "@{/consulta1}">
-                        <div class="d-flex">
-                            <input type ="text"
-                                   class ="form-control"
-                                   th:value ="${descripcion}"
-                                   th:name ="descripcion"
-                                   required="true"
-                                   style="flex-grow: 1; margin-right: 10px;"/>
-                            <button type ="submit" class = "btn btn-dark">
-                                <i class="fas fa-magnifying-glass"></i>
-                            </button>
-                        </div>
-                    </form>
                 </div>
+            </nav>
+        </header>
 
-                <!--Barra de busqueda-->
 
-            </div>
 
+
+        <!-- Barra Lateral -->
+        <section th:fragment="barra-lateral" 
+                 class=" col-md-5 mx-auto p-3 rounded shadow-lg bg-dark-custom text-white p-2 pb-0 d-flex flex-column align-items-start shadow-lg" 
+                 style="background-color: #2a2a2a; width: 400px; border-radius: 10px;">
+
+            <!-- Encabezado -->
+            <h5 class="text-center w-100 mb-4 pb-2 border-bottom" 
+                style="letter-spacing: 1px; font-weight: bold; border-color: #6c757d;">
+                Navegación
+            </h5>
+
+            <!-- Menú -->
+            <ul class="nav flex-column w-100">
+                <li class="nav-item mb-2">
+                    <a class="nav-link d-flex align-items-center" href="/" 
+                       style="color: #e0e0e0; transition: all 0.3s ease;">
+                        <i class="bi bi-house me-2" style="font-size: 1.2rem;"></i> 
+                        <span>Inicio</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link d-flex align-items-center" href="/productos" 
+                       style="color: #e0e0e0; transition: all 0.3s ease;">
+                        <i class="bi bi-box-seam me-2" style="font-size: 1.2rem;"></i>
+                        <span>Productos</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link d-flex align-items-center" href="/categorias" 
+                       style="color: #e0e0e0; transition: all 0.3s ease;">
+                        <i class="bi bi-tags me-2" style="font-size: 1.2rem;"></i>
+                        <span>Categorías</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link d-flex align-items-center" href="/citas" 
+                       style="color: #e0e0e0; transition: all 0.3s ease;">
+                        <i class="bi bi-calendar me-2" style="font-size: 1.2rem;"></i>
+                        <span>Citas</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link d-flex align-items-center" href="/devoluciones" 
+                       style="color: #e0e0e0; transition: all 0.3s ease;">
+                        <i class="bi bi-arrow-counterclockwise me-2" style="font-size: 1.2rem;"></i>
+                        <span>Devoluciones</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link d-flex align-items-center" href="/empleados" 
+                       style="color: #e0e0e0; transition: all 0.3s ease;">
+                        <i class="bi bi-person me-2" style="font-size: 1.2rem;"></i>
+                        <span>Empleados</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link d-flex align-items-center" href="/facturas" 
+                       style="color: #e0e0e0; transition: all 0.3s ease;">
+                        <i class="bi bi-receipt me-2" style="font-size: 1.2rem;"></i>
+                        <span>Facturas</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link d-flex align-items-center" href="/clientes" 
+                       style="color: #e0e0e0; transition: all 0.3s ease;">
+                        <i class="bi bi-people me-2" style="font-size: 1.2rem;"></i>
+                        <span>Clientes</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-0">
+                    <a class="nav-link d-flex align-items-center" href="/auditoria" 
+                       style="color: #e0e0e0; transition: all 0.3s ease;">
+                        <i class="bi bi-tags me-2" style="font-size: 1.2rem;"></i>
+                        <span>Auditorias</span>
+                    </a>
+                </li>
+            </ul>
         </section>
 
-        <!-- Fragmento de barra lateral -->
-<section th:fragment="barra-lateral" class="bg-dark-custom text-white vh-100 p-3" style="width: 250px;">
-    <h5 class="text-center mb-4">Navegación</h5>
-    <ul class="nav flex-column">
-        <li class="nav-item mb-2">
-            <a class="nav-link text-white" href="/productos">
-                <i class="bi bi-box-seam"></i> Productos
-            </a>
-        </li>
-        <li class="nav-item mb-2">
-            <a class="nav-link text-white" href="/categorias">
-                <i class="bi bi-box-seam"></i> Categorías
-            </a>
-        </li>
-        <li class="nav-item mb-2">
-            <a class="nav-link text-white" href="/citas">
-                <i class="bi bi-calendar"></i> Citas
-            </a>
-        </li>
-        <li class="nav-item mb-2">
-            <a class="nav-link text-white" href="/devoluciones">
-                <i class="bi bi-arrow-counterclockwise"></i> Devoluciones
-            </a>
-        </li>
-        <li class="nav-item mb-2">
-            <a class="nav-link text-white" href="/empleados">
-                <i class="bi bi-person"></i> Empleados
-            </a>
-        </li>
-        <li class="nav-item mb-2">
-            <a class="nav-link text-white" href="/facturas">
-                <i class="bi bi-receipt"></i> Facturas
-            </a>
-        </li>
-        <li class="nav-item mb-2">
-            <a class="nav-link text-white" href="/clientes">
-                <i class="bi bi-people"></i> Clientes
-            </a>
-        </li>
-        <li class="nav-item mb-2">
-            <a class="nav-link text-white" href="/inventario">
-                <i class="bi bi-box"></i> Materiales
-            </a>
-        </li>
-        <li class="nav-item mb-2">
-            <a class="nav-link text-white" href="/proveedores">
-                <i class="bi bi-truck"></i> Proveedores
-            </a>
-        </li>
-        <li class="nav-item mb-2">
-            <a class="nav-link text-white" href="/auditoria">
-                <i class="bi bi-clipboard-check"></i> Auditorías
-            </a>
-        </li>
-    </ul>
-</section>
 
-        
-        
-        <footer th:fragmento="footer" class="bg-info bg-dark text-white mt-5 p-2 text-center ">
-            <p>&COPY;DistritoBelleza Drechos Reservados 2025</p>
+
+
+        <!-- Footer -->
+        <footer th:fragment="footer"  class="text-white mt-5 p-3 text-center">
+            <p>&COPY; Distrito Belleza - Derechos Reservados 2025</p>
         </footer>
-
     </body>
 </html>

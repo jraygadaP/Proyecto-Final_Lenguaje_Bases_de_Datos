@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="~{layout/plantilla :: head}">
     <title>Productos Disponibles</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <style>
         .card-body {
             background-color: #3a3a3a;
@@ -17,40 +17,77 @@
         }
     </style>
 </head>
+
 <body class="bg-dark text-white">
 
     <!-- Header -->
-    <header th:replace="~{layout/plantilla :: header}" class="w-100 bg-primary text-white py-4 text-center">
-        <h2>Productos Disponibles</h2>
-    </header>
+    <header th:replace="~{layout/plantilla :: header}"></header>
 
-    <!-- Tabla -->
-    <section class="py-5">
-        <div class="container">
-            <div class="card bg-dark text-white shadow-lg border-0">
-                <div class="card-body">
-                    <table class="table table-dark table-striped">
-                        <thead>
-                            <tr>
-                                <th>ID Producto</th>
-                                <th>Descripción</th>
-                                <th>Existencia</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="producto : ${productos}">
-                                <td th:text="${producto.idProducto}"></td>
-                                <td th:text="${producto.descripcion}"></td>
-                                <td th:text="${producto.existencia}"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+    <!-- Contenedor principal con barra lateral -->
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- Barra lateral -->
+            <div class="col-md-3 bg-dark-custom p-0">
+                <div th:replace="~{layout/plantilla :: barra-lateral}"></div>
+            </div>
+
+            <!-- Contenido principal -->
+            <div class="col-md-9">
+                <div class="container mt-4">
+                    <h3 class="text-light mb-4 text-center">Productos Disponibles</h3>
+
+                    <!-- Tabla de productos disponibles -->
+                    <div class="card bg-dark text-white shadow-lg border-0">
+                        <div class="card-body">
+                            <table class="table table-dark table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>ID Producto</th>
+                                        <th>Descripción</th>
+                                        <th>Existencia</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:if="${#lists.isEmpty(productos)}">
+                                        <td colspan="3" class="text-center">No hay productos disponibles.</td>
+                                    </tr>
+                                    <tr th:each="producto : ${productos}">
+                                        <td th:text="${producto.idProducto}"></td>
+                                        <td th:text="${producto.descripcion}"></td>
+                                        <td th:text="${producto.existencia}"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <div class="text-center mt-4">
+                    <a th:href="@{/productos}" 
+                       style="background-color: #032321;
+                              color: #ffffff;
+                              border-radius: 10px;
+                              transition: all 0.3s ease;
+                              box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+                              text-decoration: none;" 
+                       onmouseover="this.style.backgroundColor = '#054c45';
+                                    this.style.boxShadow = '0 0 15px 4px rgba(3, 255, 180, 0.7)';
+                                    this.style.transform = 'translateY(-3px)';"
+                       onmouseout="this.style.backgroundColor = '#032321';
+                                   this.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.5)';
+                                   this.style.transform = 'translateY(0)';"
+                       class="btn px-4 py-2 shadow-lg">
+                        Volver a la Lista
+                    </a>
+                </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Footer -->
-    <footer th:replace="~{layout/plantilla :: footer}" class="w-100 bg-primary text-white py-3 text-center"></footer>
+    <footer th:replace="~{layout/plantilla :: footer}"></footer>
+
 </body>
 </html>
